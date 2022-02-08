@@ -1,19 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+// Material
+// import { }
+
+// firebase
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.component';
-import { AreasComponent } from './components/areas/areas.component';
-import { CropsComponent } from './components/crops/crops.component';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+
+// Components
 import { AuthComponent } from './components/auth/auth.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { HomeComponent } from './components/home/home.component';
+import { AreasComponent } from './components/areas/areas.component';
+import { CropsComponent } from './components/crops/crops.component';
+import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +39,14 @@ import { HomeComponent } from './components/home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+
+    // firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase())
+    provideDatabase(() => getDatabase()),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
