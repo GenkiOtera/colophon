@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "colophon-55f5d": {
+      "hosting": {
+        "colophon": [
+          "colophon-55f5d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "colophon-55f5d"
+  }
+}
