@@ -6,7 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 // Material
-// import { }
+// Common
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+// Header
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 // firebase
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -34,7 +40,7 @@ import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.co
     AuthComponent,
     HeaderComponent,
     SidenavComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,16 @@ import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.co
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+
+    // Material
+    // Common
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    // Header
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

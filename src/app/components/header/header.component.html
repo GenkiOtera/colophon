@@ -1,0 +1,19 @@
+<div class="header">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <!-- Sidenav button -->
+        <button mat-icon-button  type="button" (click)="toggleSidenav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <!-- Toolbar's title -->
+        <span>{{ title }}</span>
+        <!-- Spacer -->
+        <span class="spacer"></span>
+        <!-- Button(right side) -->
+        <button mat-icon-button type="button">
+        <!-- <button mat-icon-button type="button" (click)="authService.signOut()"> -->
+          <mat-icon>logout</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+</div>
