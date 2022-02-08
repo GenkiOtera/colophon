@@ -1,0 +1,30 @@
+<mat-sidenav-container>
+    <mat-sidenav class="sidenav" [(opened)]="opened" mode="push">
+        <!-- コンテンツの一覧 -->
+        <mat-selection-list [multiple]="false">
+            <div mat-subheader>list's</div>
+            <mat-list-option *ngFor="let folder of folders">
+                <mat-icon mat-list-icon>grading</mat-icon>
+                <div mat-line>{{folder.name}}</div>
+            </mat-list-option>
+            <mat-divider></mat-divider>
+            <div mat-subheader>Master menu</div>
+            <mat-list-option *ngFor="let note of notes">
+                <mat-icon mat-list-icon>description</mat-icon>
+                <div mat-line>{{note.name}}</div>
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="main-container">
+            <app-header></app-header>
+            <div style="text-align:center" class="content">
+                <h1>Welcome to {{title}}!</h1>
+                <span style="display: block">{{ title }} app is running!</span>
+            </div>
+            <div class="component-area">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

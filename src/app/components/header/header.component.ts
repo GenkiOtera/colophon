@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public router: Router,
+    public appComponent: AppComponent,
   ) {
     this.router.events
       .pipe(filter(f => f instanceof NavigationEnd))
@@ -33,5 +35,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   toggleSidenav(){
+    this.appComponent.toggleSidenav();
   }
 }

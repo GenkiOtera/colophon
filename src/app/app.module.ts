@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -13,6 +13,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 // Header
 import { MatToolbarModule } from '@angular/material/toolbar';
+// Sidenav
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 // firebase
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -46,6 +49,7 @@ import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.co
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
 
     // firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -62,6 +66,9 @@ import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.co
     MatFormFieldModule,
     // Header
     MatToolbarModule,
+    // Sidenav
+    MatSidenavModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

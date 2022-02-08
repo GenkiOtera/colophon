@@ -1,0 +1,19 @@
+.sidenav {
+    width: 25%;
+    padding: 20px;
+}
+/* 確認用 */
+.sidenav {
+    background-color: gold;
+}
+.main-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.component-area {
+    height: 0%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
