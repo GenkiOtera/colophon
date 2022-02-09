@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'areas', component:AreasComponent},
   {path: 'crops', component:CropsComponent},
   {path: 'encyclopedia', component:EncyclopediaComponent},
-  {path: '**', redirectTo: 'crops', pathMatch: 'full'},
+  {path: '**', redirectTo: 'home', pathMatch: 'full'},
 ];
 
 @NgModule({
