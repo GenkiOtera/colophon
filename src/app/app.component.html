@@ -2,7 +2,7 @@
     <mat-sidenav class="sidenav" [(opened)]="opened" mode="push">
         <!-- コンテンツの一覧 -->
         <mat-selection-list [multiple]="false">
-            <mat-list-option *ngFor="let menu of menus | keyvalue" (click)="jump(menu.key)">
+            <mat-list-option *ngFor="let menu of menuIndex | keyvalue" (click)="jump(menu.key)">
                 <mat-icon mat-list-icon>grading</mat-icon>
                 <div mat-line>{{menu.value}}</div>
             </mat-list-option>

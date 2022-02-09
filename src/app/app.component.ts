@@ -9,12 +9,19 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'colophon';
   opened:boolean = false;
-  menus: {[key: string]: string } = {
-    'home': 'ホーム',
-    'areas': 'ばしょ',
-    'crops': 'さくもつ',
-    'encyclopedia': 'ずかん',
+
+  menuIndex: {[key: number]: string } = {
+    1: 'ホーム',
+    2: 'ばしょ',
+    3: 'さくもつ',
+    4: 'ずかん',
   };
+  menuPathIndex: {[key: number]: string } = {
+    1: 'home',
+    2: 'areas',
+    3: 'crops',
+    4: 'encyclopedia',
+  };  
 
   constructor(
     private router: Router,
@@ -26,8 +33,8 @@ export class AppComponent implements OnInit {
     this.opened = !this.opened;
   }
 
-  jump(name: string){
-    this.router.navigate([`/${name}`]);
+  jump(key: string){
+    this.router.navigate([`/${this.menuPathIndex[parseInt(key)]}`]);
     this.opened = !this.opened;
   }
 }
