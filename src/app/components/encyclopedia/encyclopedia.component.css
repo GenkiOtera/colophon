@@ -1,0 +1,25 @@
+:host {
+    height: 0%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.container {
+    flex: 1;
+    overflow-y: auto;
+}
+
+mat-action-row{
+    align-items: center;
+}
+.spacer {
+    flex: 1 1 auto;
+}
+::ng-deep .mat-form-field-wrapper{
+    width: 100px;
+    margin-top: -10px;
+    margin-bottom: -50px;
+}
+.title{
+    padding-left: 10px;
+}

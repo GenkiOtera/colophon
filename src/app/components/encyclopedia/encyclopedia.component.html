@@ -1,0 +1,89 @@
+<mat-action-row>
+    <div class="mat-form-field-wrapper">
+        <mat-form-field appearance="outline" color="accent">
+            <mat-label>きせつ</mat-label>
+            <mat-select [(value)]="selectedSeason">
+                <mat-option *ngFor="let season of seasons | keyvalue" [value]="season.value">
+                    {{ season.value }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <span class="spacer"></span>
+    <button mat-stroked-button color="accent">ついか</button>
+</mat-action-row>
+<div class="container">
+    <!-- Todo *ngForでコンテンツを作成するようにする -->
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>grass</mat-icon>
+                    <div class="title">さつまいも</div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+                <mat-list-item>きせつ：はる</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>にっすう：６</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>かいすう：１</mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>local_florist</mat-icon>
+                    <div class="title">チューリップ</div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+                <mat-list-item>きせつ：はる</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>にっすう：６</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>かいすう：１</mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>grass</mat-icon>
+                    <div class="title">さつまいも</div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+                <mat-list-item>きせつ：はる</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>にっすう：６</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>かいすう：１</mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>local_florist</mat-icon>
+                    <div class="title">チューリップ</div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+                <mat-list-item>きせつ：はる</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>にっすう：６</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>かいすう：１</mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
