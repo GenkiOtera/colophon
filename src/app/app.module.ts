@@ -6,16 +6,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 // Material
-// Common
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-// Header
-import { MatToolbarModule } from '@angular/material/toolbar';
-// Sidenav
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 // firebase
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -59,16 +61,18 @@ import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.co
     AngularFireDatabaseModule,
 
     // Material
-    // Common
-    MatIconModule,
+    MatCardModule,
     MatButtonModule,
-    MatInputModule,
+    MatDividerModule,
+    MatExpansionModule,
     MatFormFieldModule,
-    // Header
-    MatToolbarModule,
-    // Sidenav
-    MatSidenavModule,
+    MatIconModule,
+    MatInputModule,
     MatListModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
