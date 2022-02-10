@@ -1,5 +1,6 @@
 .sidenav {
-    width: 25%;
+    width: 200px;
+    max-width: 50%;
     padding: 20px;
 }
 /* 確認用 */
