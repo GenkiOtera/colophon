@@ -1,0 +1,51 @@
+<div class="day-container">
+    <button mat-icon-button class="arrow" type="button">
+        <mat-icon>keyboard_double_arrow_left</mat-icon>
+    </button>
+    <button mat-icon-button class="arrow" type="button">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <mat-form-field class="year box" appearance="outline">
+        <mat-label>ねん</mat-label>
+        <input matInput disabled value="９９ねん">
+    </mat-form-field>
+    <mat-form-field class="season box" appearance="outline">
+        <mat-label>きせつ</mat-label>
+        <input matInput disabled value="ふゆ">
+    </mat-form-field>
+    <mat-form-field class="day box" appearance="outline">
+        <mat-label>ひにち</mat-label>
+        <input matInput disabled value="２３にちめ">
+    </mat-form-field>
+    <button mat-icon-button class="arrow" type="button">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+    <button mat-icon-button class="arrow" type="button">
+        <mat-icon>keyboard_double_arrow_right</mat-icon>
+    </button>
+</div>
+<div class="container">
+    <!-- Todo *ngForでコンテンツを作成するようにする -->
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>grass</mat-icon>
+                    <div class="title">きた１</div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+                <mat-list-item>なまえ：さつまいも</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>ねん：２</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>きせつ：はる</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>ひにち：６</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>のこりのかいすう：１</mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

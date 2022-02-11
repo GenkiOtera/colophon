@@ -1,0 +1,37 @@
+:host {
+    height: 0%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+::ng-deep .day-container{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: -15px;
+    overflow-x: auto;
+}
+.arrow{
+    margin-top: 10px;
+}
+mat-label, input{
+    font-size: min(5vw, 14px);
+}
+.box{
+    margin: 2px;
+}
+.year{
+    width: 18vw;
+}
+.season{
+    width: 13vw;
+}
+.day{
+    width: 95px;
+}
+.container {
+    flex: 1;
+    overflow-y: auto;
+}
