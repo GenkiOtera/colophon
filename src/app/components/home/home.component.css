@@ -6,8 +6,9 @@
 }
 ::ng-deep .day-container{
     text-align: center;
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
+    text-align: center;
     justify-content: center;
     margin-top: 10px;
     margin-bottom: -15px;
@@ -16,22 +17,16 @@
 .arrow{
     margin-top: 10px;
 }
-mat-label, input{
-    font-size: min(5vw, 14px);
-}
 .box{
+    user-select: none;
+    font-size: min(10vw, 14px);
+    max-width: min(30vw, 70px);
     margin: 2px;
-}
-.year{
-    width: 18vw;
-}
-.season{
-    width: 13vw;
-}
-.day{
-    width: 95px;
 }
 .container {
     flex: 1;
     overflow-y: auto;
+}
+table{
+    width: 100%;
 }

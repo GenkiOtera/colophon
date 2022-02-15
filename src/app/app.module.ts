@@ -17,6 +17,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 // firebase
@@ -72,6 +73,7 @@ import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.co
     MatSelectModule,
     MatSidenavModule,
     MatSnackBarModule,
+    MatTableModule,
     MatToolbarModule,
   ],
   providers: [],

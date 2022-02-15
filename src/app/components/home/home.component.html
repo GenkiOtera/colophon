@@ -7,7 +7,7 @@
     </button>
     <mat-form-field class="year box" appearance="outline">
         <mat-label>ねん</mat-label>
-        <input matInput disabled value="９９ねん">
+        <input matInput disabled value="９９９">
     </mat-form-field>
     <mat-form-field class="season box" appearance="outline">
         <mat-label>きせつ</mat-label>
@@ -15,7 +15,7 @@
     </mat-form-field>
     <mat-form-field class="day box" appearance="outline">
         <mat-label>ひにち</mat-label>
-        <input matInput disabled value="２３にちめ">
+        <input matInput disabled value="２３">
     </mat-form-field>
     <button mat-icon-button class="arrow" type="button">
         <mat-icon>keyboard_arrow_right</mat-icon>
@@ -34,18 +34,93 @@
                     <div class="title">きた１</div>
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <mat-list>
-                <mat-list-item>なまえ：さつまいも</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>ねん：２</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>きせつ：はる</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>ひにち：６</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>のこりのかいすう：１</mat-list-item>
-                <mat-divider></mat-divider>
-            </mat-list>
+            <table mat-table [dataSource]="dataSource">
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> ＃ </th>
+                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> なまえ </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="weight">
+                  <th mat-header-cell *matHeaderCellDef> ねん </th>
+                  <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol">
+                  <th mat-header-cell *matHeaderCellDef> きせつ </th>
+                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol1">
+                  <th mat-header-cell *matHeaderCellDef> ひにち </th>
+                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol2">
+                  <th mat-header-cell *matHeaderCellDef> かいすう </th>
+                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <mat-divider></mat-divider>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>grass</mat-icon>
+                    <div class="title">きた１</div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <table mat-table [dataSource]="dataSource">
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef>＃</th>
+                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef>なまえ</th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="weight">
+                  <th mat-header-cell *matHeaderCellDef>ねん</th>
+                  <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol">
+                  <th mat-header-cell *matHeaderCellDef>きせつ</th>
+                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol1">
+                  <th mat-header-cell *matHeaderCellDef>ひにち</th>
+                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol2">
+                  <th mat-header-cell *matHeaderCellDef>かいすう</th>
+                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
