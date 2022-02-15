@@ -1,17 +1,15 @@
-<mat-action-row>
-    <div class="mat-form-field-wrapper">
-        <mat-form-field appearance="outline" color="accent">
-            <mat-label>きせつ</mat-label>
-            <mat-select [(value)]="selectedSeason">
-                <mat-option *ngFor="let season of seasons | keyvalue" [value]="season.value">
-                    {{ season.value }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
+<div class="tool-container">
+    <fieldset>
+        <legend>きせつ</legend>
+        <mat-select [(value)]="selectedSeason">
+            <mat-option *ngFor="let season of seasons | keyvalue" [value]="season.value">
+                {{ season.value }}
+            </mat-option>
+        </mat-select>
+    </fieldset>
     <span class="spacer"></span>
     <button mat-stroked-button color="accent">ついか</button>
-</mat-action-row>
+</div>
 <div class="container">
     <!-- Todo *ngForでコンテンツを作成するようにする -->
     <mat-accordion>
