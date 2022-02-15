@@ -8,7 +8,7 @@
     flex: 1;
     overflow-y: auto;
 }
-mat-icon{
+.list-icon{
     margin-right: 15px;
 }
 mat-list{
@@ -17,7 +17,6 @@ mat-list{
 
 .add_button{
     position: fixed;
-    padding-left: 14px;
     right: 50px;
     bottom: 30px;
 }
