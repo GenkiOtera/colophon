@@ -4,18 +4,27 @@
     flex-direction: column;
     flex: 1;
 }
-::ng-deep .day-container{
-    text-align: center;
+.day-container{
     display: inline-flex;
     flex-direction: row;
-    text-align: center;
     justify-content: center;
-    margin-top: 10px;
-    margin-bottom: -15px;
+    align-items: center;
     overflow-x: auto;
 }
-.arrow{
-    margin-top: 10px;
+fieldset{
+    min-width: auto;
+    width: 10vw;
+    border-radius: 5px;
+    margin-bottom: 7px;
+    text-align: center;
+}
+legend{
+    text-align: left;
+    white-space: nowrap;
+    font-size: 12px;
+}
+label{
+    white-space: nowrap;
 }
 .box{
     user-select: none;
