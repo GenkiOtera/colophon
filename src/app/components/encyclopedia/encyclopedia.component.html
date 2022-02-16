@@ -11,77 +11,24 @@
     <button mat-stroked-button color="accent">ついか</button>
 </div>
 <div class="container">
-    <!-- Todo *ngForでコンテンツを作成するようにする -->
-    <mat-accordion>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <mat-icon>grass</mat-icon>
-                    <div class="title">さつまいも</div>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-list>
-                <mat-list-item>きせつ：はる</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>にっすう：６</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>かいすう：１</mat-list-item>
-                <mat-divider></mat-divider>
-            </mat-list>
-        </mat-expansion-panel>
-    </mat-accordion>
-    <mat-accordion>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <mat-icon>local_florist</mat-icon>
-                    <div class="title">チューリップ</div>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-list>
-                <mat-list-item>きせつ：はる</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>にっすう：６</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>かいすう：１</mat-list-item>
-                <mat-divider></mat-divider>
-            </mat-list>
-        </mat-expansion-panel>
-    </mat-accordion>
-    <mat-accordion>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <mat-icon>grass</mat-icon>
-                    <div class="title">さつまいも</div>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-list>
-                <mat-list-item>きせつ：はる</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>にっすう：６</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>かいすう：１</mat-list-item>
-                <mat-divider></mat-divider>
-            </mat-list>
-        </mat-expansion-panel>
-    </mat-accordion>
-    <mat-accordion>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <mat-icon>local_florist</mat-icon>
-                    <div class="title">チューリップ</div>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-list>
-                <mat-list-item>きせつ：はる</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>にっすう：６</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>かいすう：１</mat-list-item>
-                <mat-divider></mat-divider>
-            </mat-list>
-        </mat-expansion-panel>
-    </mat-accordion>
+    <ng-container *ngFor="let content of local | keyvalue">
+    <!-- <ng-container *ngFor="let content of service.contents | async | keyvalue"> -->
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>local_florist</mat-icon>
+                        <div class="title">{{ content.key }}</div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <!-- <mat-list-item>ひにち:{{ content.value | json }}</mat-list-item> -->
+                    <mat-list-item>ひにち　：　{{content.value["day"]}}<mat-divider></mat-divider></mat-list-item>
+                    <mat-list-item>きせつ　：　{{content.value["season"]}}<mat-divider></mat-divider></mat-list-item>
+                    <mat-list-item>かいすう：　{{content.value["count"]}}<mat-divider></mat-divider></mat-list-item>
+                    <!-- <mat-list-item *ngFor="let element of content.value | keyvalue">{{element.key}}：{{element.value}}</mat-list-item> -->
+                </mat-list>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </ng-container>
 </div>

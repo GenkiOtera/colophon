@@ -22,11 +22,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 // firebase
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 // Components
@@ -62,9 +60,7 @@ import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.co
     }),
 
     // firebase
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
 
