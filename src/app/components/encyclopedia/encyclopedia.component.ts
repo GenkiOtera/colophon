@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { KeyValue } from '@angular/common';
 import { EncyclopediaService } from './encyclopedia.service';
 
 @Component({
@@ -16,25 +17,12 @@ export class EncyclopediaComponent implements OnInit {
     4:'ふゆ',
   }
   selectedSeason = this.seasons[0];
-  local = {
-      "じゃがいも":{
-          "category":"vegetable",
-          "season":"12",
-          "day":6,
-          "count":1
-      },
-      "チューリップ":{
-          "category":"flower",
-          "season":"1",
-          "day":10,
-          "count":1
-      },
-      "さつまいも":{
-          "category":"vegetable",
-          "season":"7",
-          "day":6,
-          "count":1
-      }
+  
+  originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>) => {
+    return 0;
+  }
+  keyDescOrder = (a: KeyValue<string,string>, b: KeyValue<string,string>): number => {
+    return a.key > b.key ? -1 : (b.key > a.key ? 1 : 0);
   }
 
   constructor(public service: EncyclopediaService) {}

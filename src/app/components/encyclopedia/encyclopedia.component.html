@@ -11,24 +11,29 @@
     <button mat-stroked-button color="accent">ついか</button>
 </div>
 <div class="container">
-    <ng-container *ngFor="let content of local | keyvalue">
-    <!-- <ng-container *ngFor="let content of service.contents | async | keyvalue"> -->
-        <mat-accordion>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <mat-icon>local_florist</mat-icon>
-                        <div class="title">{{ content.key }}</div>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <mat-list>
-                    <!-- <mat-list-item>ひにち:{{ content.value | json }}</mat-list-item> -->
-                    <mat-list-item>ひにち　：　{{content.value["day"]}}<mat-divider></mat-divider></mat-list-item>
-                    <mat-list-item>きせつ　：　{{content.value["season"]}}<mat-divider></mat-divider></mat-list-item>
-                    <mat-list-item>かいすう：　{{content.value["count"]}}<mat-divider></mat-divider></mat-list-item>
-                    <!-- <mat-list-item *ngFor="let element of content.value | keyvalue">{{element.key}}：{{element.value}}</mat-list-item> -->
-                </mat-list>
-            </mat-expansion-panel>
-        </mat-accordion>
-    </ng-container>
+    <mat-accordion *ngFor="let crop of service.crops | async | keyvalue : originalOrder">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <div *ngFor="let element of crop.value | keyvalue">
+                        <div *ngIf="element.key=='category'">
+                            <mat-icon *ngIf="element.value=='vegetable'">grass</mat-icon>
+                            <mat-icon *ngIf="element.value=='flower'">local_florist</mat-icon>
+                        </div>
+                    </div>
+                    <div class="title">{{ crop.key }}</div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+                <ng-container *ngFor="let element of crop.value | keyvalue : keyDescOrder">
+                    <div *ngIf="element.key!='category'">
+                        <mat-list-item *ngIf="element.key=='day'">ひにち　：{{element.value}}</mat-list-item>
+                        <mat-list-item *ngIf="element.key=='season'">きせつ　：{{element.value}}</mat-list-item>
+                        <mat-list-item *ngIf="element.key=='count'">かいすう：{{element.value}}</mat-list-item>
+                        <mat-divider></mat-divider>
+                    </div>
+                </ng-container>
+            </mat-list>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>

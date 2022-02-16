@@ -7,9 +7,9 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 })
 export class EncyclopediaService {
   
-  contents: Observable<any>;
+  crops: Observable<any>;
 
   constructor(db: AngularFireDatabase) {
-    this.contents = db.object('encyclopedia').valueChanges();
+    this.crops = db.object('encyclopedia').valueChanges();
   }
 }
