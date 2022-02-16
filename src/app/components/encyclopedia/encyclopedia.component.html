@@ -8,7 +8,7 @@
         </mat-select>
     </fieldset>
     <span class="spacer"></span>
-    <button mat-stroked-button color="accent">ついか</button>
+    <button mat-stroked-button color="accent" type="button" (click)="clickAddButton()">ついか</button>
 </div>
 <div class="container">
     <mat-accordion *ngFor="let crop of service.crops | async | keyvalue : originalOrder">

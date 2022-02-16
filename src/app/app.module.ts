@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 // Material
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -34,11 +35,13 @@ import { HomeComponent } from './components/home/home.component';
 import { AreasComponent } from './components/areas/areas.component';
 import { CropsComponent } from './components/crops/crops.component';
 import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.component';
+import { EncyclopediaDialog } from './components/dialogs/encyclopedia/encyclopedia.dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     EncyclopediaComponent,
+    EncyclopediaDialog,
     AreasComponent,
     CropsComponent,
     AuthComponent,
@@ -60,6 +63,7 @@ import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.co
     // Material
     MatCardModule,
     MatButtonModule,
+    MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
     MatFormFieldModule,

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+
+import { EncyclopediaDialog } from '../dialogs/encyclopedia/encyclopedia.dialog';
 import { EncyclopediaService } from './encyclopedia.service';
 
 @Component({
@@ -25,9 +28,21 @@ export class EncyclopediaComponent implements OnInit {
     return a.key > b.key ? -1 : (b.key > a.key ? 1 : 0);
   }
 
-  constructor(public service: EncyclopediaService) {}
+  isShowDialog: boolean = false;
+
+  constructor(
+    public service: EncyclopediaService,
+    public dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
+  }
+
+  clickAddButton(): void {
+    this.isShowDialog = true;
+    const dialogRef = this.dialog.open(EncyclopediaDialog, {
+      width: '80vw',
+    })
   }
 
 }
