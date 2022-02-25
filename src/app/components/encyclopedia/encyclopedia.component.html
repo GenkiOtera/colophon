@@ -19,9 +19,14 @@
                         <div *ngIf="element.key=='category'" [ngSwitch]="element.value">
                             <mat-icon *ngSwitchCase="0">grass</mat-icon>
                             <mat-icon *ngSwitchCase="1">local_florist</mat-icon>
+                            <mat-icon *ngSwitchCase="2">forest</mat-icon>
                         </div>
                     </div>
-                    <div class="title">{{ crop.key }}</div>
+                    <div class="title" *ngFor="let element of crop.value | keyvalue">
+                        <div *ngIf="element.key=='name'">
+                            {{ element.value }}
+                        </div>
+                    </div>
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-list>

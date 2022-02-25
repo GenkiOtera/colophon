@@ -13,8 +13,13 @@ import { selectedItem } from './model'
   <div mat-dialog-contents class="dialog-container">
     <form [formGroup]="form">
       <mat-form-field appearance="fill" [hideRequiredMarker]="true">
+        <mat-label>なまえ</mat-label>
+        <input matInput formControlName="name" type="text" (change)="onSelect($event)">
+        <mat-error *ngIf="form.invalid">にゅうりょくしてください</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" [hideRequiredMarker]="true">
         <mat-label>しゅるい</mat-label>
-        <mat-select formControlName="category">
+        <mat-select formControlName="category" (selectionChange)="onSelect($event)">
             <mat-option *ngFor="let category of service.categories | async | keyvalue : originalOrder" [value]="category.key">
                 {{ category.value }}
             </mat-option>
@@ -84,16 +89,17 @@ export class EncyclopediaDialog {
   counts = new Array<number>(this.countLength);
 
   form = new FormGroup({
-    category: new FormControl(this.data.category, Validators.required),
-    season: new FormControl(this.data.season, Validators.required),
-    day: new FormControl(this.data.day, Validators.required),
-    count: new FormControl(this.data.count, Validators.required),
+    name: new FormControl(this.data.param.name, Validators.required),
+    category: new FormControl(this.data.param.category, Validators.required),
+    season: new FormControl(this.data.param.season, Validators.required),
+    day: new FormControl(this.data.param.day, Validators.required),
+    count: new FormControl(this.data.param.count, Validators.required),
   });
 
   constructor(
       public dialogRef: MatDialogRef<EncyclopediaDialog>,
       @Inject(MAT_DIALOG_DATA)
-      public data:selectedItem,
+      public data:any,
       public service: EncyclopediaService,
     ) {
       if(data.isNew){
@@ -106,10 +112,21 @@ export class EncyclopediaDialog {
       // 選択肢となる数値をセット
       for(let i = 0; i < this.dayLength; i++){this.days[i] = i + 1;};
       for(let i = 0; i < this.countLength; i++){this.counts[i] = i + 1;};
+
+      this.form.valueChanges.subscribe(selectedValue  => {
+        console.log(selectedValue);
+        this.data.param = selectedValue;
+      })
   };
 
+  onSelect(item:any){
+    this.data.param.season = item.season;
+  }
   saveData(){
     // Todo firebaseサービスの保存メソッドを呼ぶ
+    if(this.data.isNew){
+      this.service.save(this.data.name, this.data.param)
+    }
     this.exit();
   }
   exit(){

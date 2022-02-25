@@ -1,5 +1,5 @@
 export interface selectedItem{
-    isNew:boolean
+    name:string
     category:number | null
     season:number | null
     day:number

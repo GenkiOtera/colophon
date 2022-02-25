@@ -43,11 +43,11 @@ export class EncyclopediaComponent implements OnInit {
     this.isShowDialog = true;
     const dialogRef = this.dialog
     .open(EncyclopediaDialog, {
-      maxWidth: '230px',
+      maxWidth: '250px',
       width: '80vw',
-      maxHeight: '480px',
-      height: '60vh',
-      data: this.setInitialData(true,null,null,1,1),
+      maxHeight: '570px',
+      height: '80vh',
+      data: {isNew: true, name:'', param:this.setInitialData(1,1)},
     })
     .updatePosition({top: '20%'});
   }
@@ -55,11 +55,11 @@ export class EncyclopediaComponent implements OnInit {
   clickEditButton(){
   }
 
-  private setInitialData(isNew:boolean, category:number|null, season:number|null, day:number, count:number): selectedItem{
+  private setInitialData(day:number, count:number, name?:string, category?:number, season?:number): selectedItem{
     let data:selectedItem = {
-      isNew : isNew,
-      category : category,
-      season : season,
+      name : name?name:'',
+      category : category?category:null,
+      season : season?season:null,
       day : day,
       count : count,
     }
