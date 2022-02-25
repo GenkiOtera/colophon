@@ -3,6 +3,7 @@ import { KeyValue } from '@angular/common';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { EncyclopediaService } from '../../encyclopedia/encyclopedia.service'; 
 import { selectedItem } from './model'
 
 @Component({
@@ -14,7 +15,7 @@ import { selectedItem } from './model'
       <mat-form-field appearance="fill" [hideRequiredMarker]="true">
         <mat-label>しゅるい</mat-label>
         <mat-select formControlName="category">
-            <mat-option *ngFor="let category of categories | keyvalue : originalOrder" [value]="category.key">
+            <mat-option *ngFor="let category of service.categories | async | keyvalue : originalOrder" [value]="category.key">
                 {{ category.value }}
             </mat-option>
         </mat-select>
@@ -23,7 +24,7 @@ import { selectedItem } from './model'
       <mat-form-field appearance="fill" [hideRequiredMarker]="true">
         <mat-label>きせつ</mat-label>
         <mat-select formControlName="season">
-            <mat-option *ngFor="let season of seasons | keyvalue : originalOrder" [value]="season.key">
+            <mat-option *ngFor="let season of service.seasons | async | keyvalue : originalOrder" [value]="season.key">
                 {{ season.value }}
             </mat-option>
         </mat-select>
@@ -79,29 +80,6 @@ export class EncyclopediaDialog {
   dayLength = 20;
   countLength = 5;
 
-  // Todo keyvalueのオブジェクトはfirebaseから取得するようにする
-  categories: {[key:number]: string} = {
-    0:"やさい",
-    1:"はな",
-    2:"き",
-  };
-  seasons: {[key:number]: string} = {
-    0:"はるなつあきふゆ",
-    1:"はる",
-    2:"はるなつ",
-    3:"はるなつあき",
-    4:"なつ",
-    5:"なつあき",
-    6:"なつあきふゆ",
-    7:"あき",
-    8:"あきふゆ",
-    9:"あきふゆはる",
-    10:"ふゆ",
-    11:"ふゆはる",
-    12:"ふゆはるなつ",
-    13:"はるあき",
-    14:"なつふゆ",
-  };
   days = new Array<number>(this.dayLength);
   counts = new Array<number>(this.countLength);
 
@@ -116,6 +94,7 @@ export class EncyclopediaDialog {
       public dialogRef: MatDialogRef<EncyclopediaDialog>,
       @Inject(MAT_DIALOG_DATA)
       public data:selectedItem,
+      public service: EncyclopediaService,
     ) {
       if(data.isNew){
         this.title = "ついか"
