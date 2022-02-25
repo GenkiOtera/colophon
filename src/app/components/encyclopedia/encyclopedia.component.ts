@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 
+import { selectedItem } from '../dialogs/encyclopedia/model';
 import { EncyclopediaDialog } from '../dialogs/encyclopedia/encyclopedia.dialog';
 import { EncyclopediaService } from './encyclopedia.service';
 
@@ -40,9 +41,28 @@ export class EncyclopediaComponent implements OnInit {
 
   clickAddButton(): void {
     this.isShowDialog = true;
-    const dialogRef = this.dialog.open(EncyclopediaDialog, {
+    const dialogRef = this.dialog
+    .open(EncyclopediaDialog, {
+      maxWidth: '230px',
       width: '80vw',
+      maxHeight: '480px',
+      height: '60vh',
+      data: this.setInitialData(true,null,null,1,1),
     })
+    .updatePosition({top: '20%'});
   }
 
+  clickEditButton(){
+  }
+
+  private setInitialData(isNew:boolean, category:number|null, season:number|null, day:number, count:number): selectedItem{
+    let data:selectedItem = {
+      isNew : isNew,
+      category : category,
+      season : season,
+      day : day,
+      count : count,
+    }
+    return data;
+  }
 }

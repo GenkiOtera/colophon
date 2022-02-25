@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -50,10 +51,12 @@ import { EncyclopediaDialog } from './components/dialogs/encyclopedia/encycloped
     HomeComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     // firebase
     AngularFireModule.initializeApp(environment.firebase),
