@@ -21,6 +21,13 @@ export class EncyclopediaComponent implements OnInit {
     4:'ふゆ',
   }
   selectedSeason = this.seasons[0];
+  categories: {[key:number]: string} = {
+    0:'すべて',
+    1:'やさい',
+    2:'はな',
+    3:'き',
+  }
+  selectedCategory = this.categories[0];
   
   originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>) => {
     return 0;

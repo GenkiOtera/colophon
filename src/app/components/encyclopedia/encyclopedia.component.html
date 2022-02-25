@@ -7,6 +7,14 @@
             </mat-option>
         </mat-select>
     </fieldset>
+    <fieldset>
+        <legend>しゅるい</legend>
+        <mat-select [(value)]="selectedCategory">
+            <mat-option *ngFor="let category of categories | keyvalue" [value]="category.value">
+                {{ category.value }}
+            </mat-option>
+        </mat-select>
+    </fieldset>
     <span class="spacer"></span>
     <button mat-stroked-button color="accent" type="button" (click)="clickAddButton()">ついか</button>
 </div>
