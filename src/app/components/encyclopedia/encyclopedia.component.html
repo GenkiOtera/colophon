@@ -1,16 +1,16 @@
 <div class="tool-container">
     <fieldset>
         <legend>きせつ</legend>
-        <mat-select [(value)]="selectedSeason">
-            <mat-option *ngFor="let season of seasons | keyvalue" [value]="season.value">
+        <mat-select [(ngModel)]="selectedSeason" (selectionChange)="changeSeasonFilter()">
+            <mat-option *ngFor="let season of seasons | keyvalue" [value]="season.key">
                 {{ season.value }}
             </mat-option>
         </mat-select>
     </fieldset>
     <fieldset>
         <legend>しゅるい</legend>
-        <mat-select [(value)]="selectedCategory">
-            <mat-option *ngFor="let category of categories | keyvalue" [value]="category.value">
+        <mat-select [(ngModel)]="selectedCategory">
+            <mat-option *ngFor="let category of categories | keyvalue : originalOrder" [value]="category.key">
                 {{ category.value }}
             </mat-option>
         </mat-select>
@@ -20,7 +20,7 @@
 </div>
 <div class="container">
     <mat-accordion *ngFor="let crop of service.crops | async | keyvalue : originalOrder">
-        <mat-expansion-panel>
+        <mat-expansion-panel *ngIf="!seasonFilter.includes(crop.value['season']) && (selectedCategory=='99' || selectedCategory==crop.value['category'])">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <div *ngFor="let element of crop.value | keyvalue">
@@ -29,9 +29,7 @@
                             <mat-icon *ngSwitchCase="1">local_florist</mat-icon>
                             <mat-icon *ngSwitchCase="2">forest</mat-icon>
                         </div>
-                    </div>
-                    <div class="title" *ngFor="let element of crop.value | keyvalue">
-                        <div *ngIf="element.key=='name'">
+                        <div class="title" *ngIf="element.key=='name'">
                             {{ element.value }}
                         </div>
                     </div>

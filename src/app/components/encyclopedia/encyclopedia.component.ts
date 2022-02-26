@@ -20,14 +20,21 @@ export class EncyclopediaComponent implements OnInit {
     3:'あき',
     4:'ふゆ',
   }
-  selectedSeason = this.seasons[0];
+  selectedSeason:string = Object.keys(this.seasons)[0];
   categories: {[key:number]: string} = {
-    0:'すべて',
-    1:'やさい',
-    2:'はな',
-    3:'き',
+    99:'すべて',
+    0:'やさい',
+    1:'はな',
+    2:'き',
   }
-  selectedCategory = this.categories[0];
+  selectedCategory:string = Object.keys(this.categories)[3];
+  // フィルター内の数値は該当しない季節の数値
+  seasonFilter:string[] = [];
+  springFilter:string[] = ['4','5','6','7','8','10','14'];
+  summerFilter:string[] = ['1','7','8','9','10','11','13'];
+  fallFilter:string[] =   ['1','2','4','10','11','12','14'];
+  winterFilter:string[] = ['1','2','3','4','5','7','13'];
+  categoryFilter:string = '0';
   
   originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>) => {
     return 0;
@@ -44,6 +51,25 @@ export class EncyclopediaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+  }
+
+  changeSeasonFilter(){
+    switch(this.selectedSeason){
+      case '1':
+        this.seasonFilter = this.springFilter;
+        break;
+      case '2':
+        this.seasonFilter = this.summerFilter;
+        break;
+      case '3':
+        this.seasonFilter = this.fallFilter;
+        break;
+      case '4':
+        this.seasonFilter = this.winterFilter;
+        break;
+      default:
+          this.seasonFilter = [];
+    }
   }
 
   clickAddButton(): void {
