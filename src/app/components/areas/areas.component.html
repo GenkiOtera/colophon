@@ -1,12 +1,12 @@
 <div class="container">
     <mat-list>
-        <mat-list-item *ngFor="let area of areas">
+        <mat-list-item *ngFor="let area of service.areas | async | keyvalue : originalOrder">
             <mat-icon class="list-icon">grass</mat-icon>
-            {{ area }}
+            {{ area.value['name'] }}
             <span class="spacer"></span>
             <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
             <mat-menu #menu="matMenu">
-                <label mat-menu-item disabled>{{ area }}</label>
+                <label mat-menu-item disabled>{{ area.value['name'] }}</label>
                 <button mat-menu-item>
                   <mat-icon>edit</mat-icon>
                   <span>へんしゅう</span>

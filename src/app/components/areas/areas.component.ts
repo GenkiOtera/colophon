@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { KeyValue } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+
+import { AreasService } from './areas.service';
 
 @Component({
   selector: 'app-areas',
@@ -7,44 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AreasComponent implements OnInit {
 
-  areas = [
-    'きた１'
-    , 'きた２'
-    , 'みなみ１'
-    , 'みなみ２'
-    , 'みなみ３'
-    , 'ちゅうおう１'
-    , 'ちゅうおう２'
-    , 'ひがし１'
-    , 'にし１'
-    , 'にし２'
-    ,'きた１'
-    , 'きた２'
-    , 'みなみ１'
-    , 'みなみ２'
-    , 'みなみ３'
-    , 'ちゅうおう１'
-    , 'ちゅうおう２'
-    , 'ひがし１'
-    // , 'にし１'
-    // , 'にし２'
-    // ,'きた１'
-    // , 'きた２'
-    // , 'みなみ１'
-    // , 'みなみ２'
-    // , 'みなみ３'
-    // , 'ちゅうおう１'
-    // , 'ちゅうおう２'
-    // , 'ひがし１'
-    // , 'にし１'
-    // , 'にし２'
-  ]
-
-  constructor() { }
+  constructor(
+    public service: AreasService,
+    public dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
   }
   openDialog(){
 
   }
+
+  // Compare Function's
+  originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>):number => 0;
 }
