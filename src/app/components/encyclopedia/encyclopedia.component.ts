@@ -85,8 +85,11 @@ export class EncyclopediaComponent implements OnInit {
     })
     .updatePosition({top: '20%'});
   }
-
-  clickEditButton(){
+  
+  clickEditButton(key:string){
+  }
+  clickDeleteButton(key:string): void {
+    this.service.delete(key);
   }
 
   private setInitialData(day:number, count:number, name?:string, category?:number, season?:number): selectedItem{

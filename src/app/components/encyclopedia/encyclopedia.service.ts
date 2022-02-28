@@ -19,7 +19,11 @@ export class EncyclopediaService {
     this.crops = db.object('encyclopedia').valueChanges();
   }
 
-  save(name:string, param:selectedItem){
+  save(param:selectedItem){
     this.db.list('encyclopedia').push(param);
+  }
+
+  delete(key:string){
+    this.db.list('encyclopedia/'+key).remove();
   }
 }

@@ -125,7 +125,7 @@ export class EncyclopediaDialog {
   saveData(){
     // Todo firebaseサービスの保存メソッドを呼ぶ
     if(this.data.isNew){
-      this.service.save(this.data.name, this.data.param)
+      this.service.save(this.data.param)
     }
     this.exit();
   }
