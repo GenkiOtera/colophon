@@ -14,7 +14,9 @@
 mat-list{
     margin-bottom: 130px;
 }
-
+.spacer {
+    flex: 1 1 auto;
+}
 .add_button{
     position: fixed;
     right: 50px;

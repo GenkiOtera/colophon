@@ -3,10 +3,23 @@
         <mat-list-item *ngFor="let area of areas">
             <mat-icon class="list-icon">grass</mat-icon>
             {{ area }}
+            <span class="spacer"></span>
+            <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
+            <mat-menu #menu="matMenu">
+                <label mat-menu-item disabled>{{ area }}</label>
+                <button mat-menu-item>
+                  <mat-icon>edit</mat-icon>
+                  <span>へんしゅう</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>delete</mat-icon>
+                  <span>さくじょ</span>
+                </button>
+              </mat-menu>
             <mat-divider></mat-divider>
         </mat-list-item>
     </mat-list>
+    <button mat-fab class="add_button" color="accent" type="button" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+    </button>
 </div>
-<button mat-fab class="add_button" color="accent" type="button" (click)="openDialog()">
-    <mat-icon>add</mat-icon>
-</button>
