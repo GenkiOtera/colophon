@@ -36,7 +36,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AreasComponent } from './components/areas/areas.component';
 import { CropsComponent } from './components/crops/crops.component';
 import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.component';
-import { EncyclopediaDialog } from './components/dialogs/encyclopedia/encyclopedia.dialog';
+import { EncyclopediaDialog } from './components/dialogs/encyclopedia.dialog';
 
 @NgModule({
   declarations: [

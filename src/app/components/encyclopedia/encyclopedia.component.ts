@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 
-import { selectedItem } from '../dialogs/encyclopedia/model';
-import { EncyclopediaDialog } from '../dialogs/encyclopedia/encyclopedia.dialog';
+import { selectedItem } from '../../models/encyclopedia.selectedItem.model';
+import { EncyclopediaDialog } from '../dialogs/encyclopedia.dialog';
 import { EncyclopediaService } from './encyclopedia.service';
 
 @Component({

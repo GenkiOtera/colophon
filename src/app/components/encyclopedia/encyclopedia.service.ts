@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
 
-import { selectedItem } from '../dialogs/encyclopedia/model';
+import { selectedItem } from '../../models/encyclopedia.selectedItem.model';
 
 @Injectable({
   providedIn: 'root'
