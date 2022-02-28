@@ -38,3 +38,12 @@ label{
 .title{
     padding-left: 10px;
 }
+.button-container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.button-container > button{
+    margin-left: 10px;
+}
