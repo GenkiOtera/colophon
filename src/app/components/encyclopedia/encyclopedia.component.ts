@@ -32,24 +32,28 @@ export class EncyclopediaComponent implements OnInit {
   seasonFilter:string[] = [];
   springFilter:string[] = ['4','5','6','7','8','10','14'];
   summerFilter:string[] = ['1','7','8','9','10','11','13'];
-  fallFilter:string[] =   ['1','2','4','10','11','12','14'];
+  fallFilter  :string[] = ['1','2','4','10','11','12','14'];
   winterFilter:string[] = ['1','2','3','4','5','7','13'];
   categoryFilter:string = '0';
   
-  originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>):number => 0;
-  categoryOrder = (a: KeyValue<string,string>, b: KeyValue<string,string>):number => {
-    return a.key == '99' ? -1 : (b.key == '99' ? -1 : 0);
-  };
-  keyDescOrder = (a: KeyValue<string,string>, b: KeyValue<string,string>): number => {
-    return a.key > b.key ? -1 : (b.key > a.key ? 1 : 0);
-  };
-
   constructor(
     public service: EncyclopediaService,
     public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
+  }
+
+  clickAddButton(): void {
+    let data:selectedItem = this.createSelectedItem(true);
+    this.openDialog(true, null, data);
+  }
+  clickEditButton(key:string, param:any){
+    let data:selectedItem = this.createSelectedItem(false, param);
+    this.openDialog(false, key, data);
+  }
+  clickDeleteButton(key:string): void {
+    this.service.delete(key);
   }
 
   changeSeasonFilter(){
@@ -69,18 +73,6 @@ export class EncyclopediaComponent implements OnInit {
       default:
           this.seasonFilter = [];
     }
-  }
-
-  clickAddButton(): void {
-    let data:selectedItem = this.createSelectedItem(true);
-    this.openDialog(true, null, data);
-  }
-  clickEditButton(key:string, param:any){
-    let data:selectedItem = this.createSelectedItem(false, param);
-    this.openDialog(false, key, data);
-  }
-  clickDeleteButton(key:string): void {
-    this.service.delete(key);
   }
 
   // Private Method's
@@ -117,4 +109,14 @@ export class EncyclopediaComponent implements OnInit {
       })
       .updatePosition({top: '20%'});
   }
+
+  // Compare Function's
+  originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>):number => 0;
+  categoryOrder = (a: KeyValue<string,string>, b: KeyValue<string,string>):number => {
+    return a.key == '99' ? -1 : (b.key == '99' ? -1 : 0);
+  };
+  keyDescOrder = (a: KeyValue<string,string>, b: KeyValue<string,string>): number => {
+    return a.key > b.key ? -1 : (b.key > a.key ? 1 : 0);
+  };
+
 }

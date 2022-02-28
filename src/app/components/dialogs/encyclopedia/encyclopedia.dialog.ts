@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { EncyclopediaService } from '../../encyclopedia/encyclopedia.service'; 
-import { selectedItem } from './model'
 
 @Component({
   selector: 'encyclopedia-dialog',
@@ -14,12 +13,12 @@ import { selectedItem } from './model'
     <form [formGroup]="form">
       <mat-form-field appearance="fill" [hideRequiredMarker]="true">
         <mat-label>なまえ</mat-label>
-        <input matInput formControlName="name" type="text" (change)="onSelect($event)">
+        <input matInput formControlName="name" type="text">
         <mat-error *ngIf="form.invalid">にゅうりょくしてください</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" [hideRequiredMarker]="true">
         <mat-label>しゅるい</mat-label>
-        <mat-select formControlName="category" (selectionChange)="onSelect($event)">
+        <mat-select formControlName="category">
             <mat-option *ngFor="let category of service.categories | async | keyvalue : originalOrder" [value]="category.key">
                 {{ category.value }}
             </mat-option>
@@ -114,18 +113,16 @@ export class EncyclopediaDialog {
       for(let i = 0; i < this.countLength; i++){this.counts[i] = i + 1;};
 
       this.form.valueChanges.subscribe(selectedValue  => {
-        console.log(selectedValue);
         this.data.param = selectedValue;
       })
   };
 
-  onSelect(item:any){
-    this.data.param.season = item.season;
-  }
   saveData(){
     // Todo firebaseサービスの保存メソッドを呼ぶ
     if(this.data.isNew){
-      this.service.save(this.data.param)
+      this.service.save(this.data.param);
+    }else{
+      this.service.update(this.data.key, this.data.param);
     }
     this.exit();
   }

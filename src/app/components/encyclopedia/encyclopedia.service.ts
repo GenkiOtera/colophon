@@ -23,6 +23,10 @@ export class EncyclopediaService {
     this.db.list('encyclopedia').push(param);
   }
 
+  update(key:string, param:selectedItem){
+    this.db.list('encyclopedia').update(key,param);
+  }
+
   delete(key:string){
     this.db.list('encyclopedia/'+key).remove();
   }
