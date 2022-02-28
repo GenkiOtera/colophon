@@ -36,12 +36,13 @@ export class EncyclopediaComponent implements OnInit {
   winterFilter:string[] = ['1','2','3','4','5','7','13'];
   categoryFilter:string = '0';
   
-  originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>) => {
-    return 0;
-  }
+  originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>):number => 0;
+  categoryOrder = (a: KeyValue<string,string>, b: KeyValue<string,string>):number => {
+    return a.key == '99' ? -1 : (b.key == '99' ? -1 : 0);
+  };
   keyDescOrder = (a: KeyValue<string,string>, b: KeyValue<string,string>): number => {
     return a.key > b.key ? -1 : (b.key > a.key ? 1 : 0);
-  }
+  };
 
   isShowDialog: boolean = false;
 

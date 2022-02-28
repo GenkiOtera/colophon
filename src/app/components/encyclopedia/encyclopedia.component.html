@@ -10,7 +10,7 @@
     <fieldset>
         <legend>しゅるい</legend>
         <mat-select [(ngModel)]="selectedCategory">
-            <mat-option *ngFor="let category of categories | keyvalue : originalOrder" [value]="category.key">
+            <mat-option *ngFor="let category of categories | keyvalue : categoryOrder" [value]="category.key">
                 {{ category.value }}
             </mat-option>
         </mat-select>
