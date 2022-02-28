@@ -28,7 +28,7 @@ export class EncyclopediaComponent implements OnInit {
     2:'き',
   }
   selectedCategory:string = Object.keys(this.categories)[3];
-  // フィルター内の数値は該当しない季節の数値
+  // 季節フィルター内の数値は該当しない季節の数値
   seasonFilter:string[] = [];
   springFilter:string[] = ['4','5','6','7','8','10','14'];
   summerFilter:string[] = ['1','7','8','9','10','11','13'];
@@ -43,8 +43,6 @@ export class EncyclopediaComponent implements OnInit {
   keyDescOrder = (a: KeyValue<string,string>, b: KeyValue<string,string>): number => {
     return a.key > b.key ? -1 : (b.key > a.key ? 1 : 0);
   };
-
-  isShowDialog: boolean = false;
 
   constructor(
     public service: EncyclopediaService,
@@ -74,32 +72,49 @@ export class EncyclopediaComponent implements OnInit {
   }
 
   clickAddButton(): void {
-    this.isShowDialog = true;
-    const dialogRef = this.dialog
-    .open(EncyclopediaDialog, {
-      maxWidth: '250px',
-      width: '80vw',
-      maxHeight: '570px',
-      height: '80vh',
-      data: {isNew: true, name:'', param:this.setInitialData(1,1)},
-    })
-    .updatePosition({top: '20%'});
+    let data:selectedItem = this.createSelectedItem(true);
+    this.openDialog(true, null, data);
   }
-  
-  clickEditButton(key:string){
+  clickEditButton(key:string, param:any){
+    let data:selectedItem = this.createSelectedItem(false, param);
+    this.openDialog(false, key, data);
   }
   clickDeleteButton(key:string): void {
     this.service.delete(key);
   }
 
-  private setInitialData(day:number, count:number, name?:string, category?:number, season?:number): selectedItem{
-    let data:selectedItem = {
-      name : name?name:'',
-      category : category?category:null,
-      season : season?season:null,
-      day : day,
-      count : count,
+  // Private Method's
+  private createSelectedItem(isNew:boolean, param?:any):selectedItem{
+    let item:selectedItem;
+    if(isNew){
+      item = {
+        name : '',
+        category : null,
+        season : null,
+        day : 1,
+        count : 1,
+      }
+    }else{
+      item = {        
+        name : param['name'],
+        category : param['category'],
+        season : param['season'],
+        day : param['day'],
+        count : param['count'],
+      }
     }
-    return data;
+    return item;    
+  }
+
+  private openDialog(isNew: boolean, key:string|null, data:selectedItem){
+    const dialogRef = this.dialog
+      .open(EncyclopediaDialog, {
+        maxWidth: '250px',
+        width: '80vw',
+        maxHeight: '570px',
+        height: '80vh',
+        data: {isNew:isNew, key:key, param:data},
+      })
+      .updatePosition({top: '20%'});
   }
 }
