@@ -19,7 +19,7 @@
     <button mat-stroked-button color="accent" type="button" (click)="clickAddButton()">ついか</button>
 </div>
 <div class="container">
-    <mat-accordion *ngFor="let crop of service.crops | async | keyvalue : originalOrder; last as last">
+    <mat-accordion *ngFor="let crop of service.crops | async | keyvalue : valueAscOrder; last as last">
         <mat-expansion-panel *ngIf="!seasonFilter.includes(crop.value['season']) && (selectedCategory=='99' || selectedCategory==crop.value['category'])">
             <mat-expansion-panel-header>
                 <mat-panel-title>

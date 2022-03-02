@@ -39,4 +39,7 @@ export class AreasComponent implements OnInit {
 
   // Compare Function's
   originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>):number => 0;
+  valueAscOrder = (a: KeyValue<string,any>, b: KeyValue<string,any>): number => {
+    return a.value['name'].localeCompare(b.value['name']);
+  };
 }

@@ -1,6 +1,6 @@
 <div class="container">
     <mat-list>
-        <mat-list-item *ngFor="let area of service.areas | async | keyvalue : originalOrder">
+        <mat-list-item *ngFor="let area of service.areas | async | keyvalue : valueAscOrder">
             <mat-icon class="list-icon">grass</mat-icon>
             {{ area.value['name'] }}
             <span class="spacer"></span>

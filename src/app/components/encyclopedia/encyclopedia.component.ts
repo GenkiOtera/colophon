@@ -112,6 +112,9 @@ export class EncyclopediaComponent implements OnInit {
 
   // Compare Function's
   originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>):number => 0;
+  valueAscOrder = (a: KeyValue<string,any>, b: KeyValue<string,any>): number => {
+    return a.value['name'].localeCompare(b.value['name']);
+  };
   categoryOrder = (a: KeyValue<string,string>, b: KeyValue<string,string>):number => {
     return a.key == '99' ? -1 : (b.key == '99' ? -1 : 0);
   };
