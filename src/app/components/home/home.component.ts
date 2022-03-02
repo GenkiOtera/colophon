@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { HomeService } from './home.service';
+
 @Component({
   selector: 'app-home',
   templateUrl:'home.component.html',
@@ -10,7 +12,7 @@ export class HomeComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'symbol1', 'symbol2'];
   dataSource = ELEMENT_DATA;
 
-  constructor() { }
+  constructor(public service:HomeService) { }
 
   ngOnInit(): void {
   }
