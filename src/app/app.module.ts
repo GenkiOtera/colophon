@@ -35,6 +35,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { HomeComponent } from './components/home/home.component';
 import { AreasComponent } from './components/areas/areas.component';
+import { AreasDialog } from './components/dialogs/areas.dialog';
 import { CropsComponent } from './components/crops/crops.component';
 import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.component';
 import { EncyclopediaDialog } from './components/dialogs/encyclopedia.dialog';
@@ -42,14 +43,15 @@ import { EncyclopediaDialog } from './components/dialogs/encyclopedia.dialog';
 @NgModule({
   declarations: [
     AppComponent,
+    AreasComponent,
+    AreasDialog,
+    AuthComponent,
+    CropsComponent,
     EncyclopediaComponent,
     EncyclopediaDialog,
-    AreasComponent,
-    CropsComponent,
-    AuthComponent,
     HeaderComponent,
-    SidenavComponent,
     HomeComponent,
+    SidenavComponent,
   ],
   imports: [
     AppRoutingModule,

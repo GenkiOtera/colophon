@@ -7,11 +7,11 @@
             <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
             <mat-menu #menu="matMenu">
                 <label mat-menu-item disabled>{{ area.value['name'] }}</label>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="clickEditButton(area.key, area.value['name'])">
                   <mat-icon>edit</mat-icon>
                   <span>へんしゅう</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="clickDeleteButton(area.key)">
                   <mat-icon>delete</mat-icon>
                   <span>さくじょ</span>
                 </button>
@@ -19,7 +19,7 @@
             <mat-divider></mat-divider>
         </mat-list-item>
     </mat-list>
-    <button mat-fab class="add_button" color="accent" type="button" (click)="openDialog()">
+    <button mat-fab class="add_button" color="accent" type="button" (click)="clickAddButton()">
         <mat-icon>add</mat-icon>
     </button>
 </div>

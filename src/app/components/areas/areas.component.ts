@@ -3,6 +3,7 @@ import { KeyValue } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 
 import { AreasService } from './areas.service';
+import { AreasDialog } from '../dialogs/areas.dialog';
 
 @Component({
   selector: 'app-areas',
@@ -18,8 +19,22 @@ export class AreasComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  openDialog(){
 
+  clickAddButton(): void {
+    this.openDialog(true, null, '');
+  }
+  clickEditButton(key:string, name:string){
+    this.openDialog(false, key, name);
+  }
+  clickDeleteButton(key:string): void {
+    this.service.delete(key);
+  }
+
+  private openDialog(isNew:boolean, key:string|null, name:string){
+    const dialogRef = this.dialog
+    .open(AreasDialog, {
+      data: {isNew:isNew, key:key, name:name},
+    })
   }
 
   // Compare Function's

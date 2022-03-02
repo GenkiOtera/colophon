@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
-import { selectedItem } from '../../models/areas.selectedItem.model';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -15,12 +13,12 @@ export class AreasService {
     this.areas = db.object('area').valueChanges();
   }
 
-  save(param:selectedItem){
-    this.db.list('area').push(param);
+  save(name:string){
+    this.db.list('area').push(name);
   }
 
-  update(key:string, param:selectedItem){
-    this.db.list('area').update(key,param);
+  update(key:string, name:string){
+    this.db.list('area').update(key,name);
   }
 
   delete(key:string){
