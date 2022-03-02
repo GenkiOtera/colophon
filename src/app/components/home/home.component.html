@@ -1,8 +1,8 @@
 <div class="day-container">
-    <button mat-icon-button class="arrow" type="button">
+    <button mat-icon-button class="arrow" type="button" (click)="service.backSeason()">
         <mat-icon>keyboard_double_arrow_left</mat-icon>
     </button>
-    <button mat-icon-button class="arrow" type="button">
+    <button mat-icon-button class="arrow" type="button" (click)="service.backDay()">
         <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
     <fieldset>
@@ -17,10 +17,10 @@
         <legend>ひにち</legend>
         <label>{{ service.day }}</label>
     </fieldset>
-    <button mat-icon-button class="arrow" type="button">
+    <button mat-icon-button class="arrow" type="button" (click)="service.advanceDay()">
         <mat-icon>keyboard_arrow_right</mat-icon>
     </button>
-    <button mat-icon-button class="arrow" type="button">
+    <button mat-icon-button class="arrow" type="button" (click)="service.advanceSeason()">
         <mat-icon>keyboard_double_arrow_right</mat-icon>
     </button>
 </div>
