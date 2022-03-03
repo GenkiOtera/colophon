@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { selectedItem } from '../../models/encyclopedia.selectedItem.model';
 import { EncyclopediaDialog } from '../dialogs/encyclopedia.dialog';
-import { EncyclopediaService } from './encyclopedia.service';
+import { EncyclopediaService } from '../../services/encyclopedia.service';
 
 @Component({
   selector: 'app-encyclopedia',

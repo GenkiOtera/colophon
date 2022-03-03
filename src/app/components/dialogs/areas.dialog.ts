@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { AreasService } from '../areas/areas.service'; 
+import { AreasService } from '../../services/areas.service'; 
 
 @Component({
   selector: 'areas-dialog',

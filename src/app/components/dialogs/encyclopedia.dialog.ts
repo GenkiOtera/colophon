@@ -3,7 +3,7 @@ import { KeyValue } from '@angular/common';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { EncyclopediaService } from '../encyclopedia/encyclopedia.service'; 
+import { EncyclopediaService } from '../../services/encyclopedia.service'; 
 
 @Component({
   selector: 'encyclopedia-dialog',

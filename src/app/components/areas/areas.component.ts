@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 
-import { AreasService } from './areas.service';
+import { AreasService } from '../../services/areas.service';
 import { AreasDialog } from '../dialogs/areas.dialog';
 
 @Component({
