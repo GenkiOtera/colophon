@@ -3,6 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Crop } from '../models/crop.model'
+import { EncyclopediaService } from './encyclopedia.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class CropService {
 
   crops = new MatTableDataSource<Crop>();
 
-  constructor(private db:AngularFireDatabase) {
+  constructor(private db:AngularFireDatabase, public eService:EncyclopediaService) {
     db.object('crop').snapshotChanges().subscribe((val:any) => {
       this.createTableData(val);
     })

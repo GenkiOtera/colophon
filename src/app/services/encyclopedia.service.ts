@@ -12,11 +12,23 @@ export class EncyclopediaService {
   categories: Observable<any>;
   seasons: Observable<any>;
   crops: Observable<any>;
+  cropNames:{[key:string]:string} = {};
 
   constructor(private db: AngularFireDatabase) {
     this.categories = db.object('category').valueChanges();
     this.seasons = db.object('きせつ').valueChanges();
     this.crops = db.object('encyclopedia').valueChanges();
+    db.object('encyclopedia').snapshotChanges().subscribe((crops:any) => {
+      let obj = crops.payload.val();
+      let keys = Object.keys(obj);
+      keys.forEach(key => {
+        let crop:{[key:string]:string} = {
+          key:key,
+          name:obj[key]['name'],
+        }
+        this.cropNames[key] = obj[key]['name'];
+      })
+    });
   }
 
   save(param:selectedItem){
@@ -29,5 +41,9 @@ export class EncyclopediaService {
 
   delete(key:string){
     this.db.list('encyclopedia/'+key).remove();
+  }
+
+  getName(key:string){
+    return this.cropNames[key] ? this.cropNames[key] : '-';
   }
 }
