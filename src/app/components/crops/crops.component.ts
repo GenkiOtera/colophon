@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { KeyValue } from '@angular/common';
+
+import { CropService } from 'src/app/services/crop.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-crops',
@@ -7,56 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CropsComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'symbol1', 'symbol2'];
-  dataSource = ELEMENT_DATA;
+  columns: string[] = [
+    'nameKey',
+    'year',
+    'day',
+    'areaKey',
+    'quantity',
+    'isWater',
+  ];
+  crops = new MatTableDataSource<any>();
 
-  constructor() { }
-
+  constructor(public service:CropService) { }
+    
   ngOnInit(): void {
   }
   openDialog(){
-
   }
-}
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  symbol1: string;
-  symbol2: string;
+  // Compare Function's
+  originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>):number => 0;
+  valueAscOrder = (a: KeyValue<string,any>, b: KeyValue<string,any>): number => {
+    return a.value['nameKey'].localeCompare(b.value['nameKey']);
+  };
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', symbol1: 'H', symbol2: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', symbol1: 'H', symbol2: 'H'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', symbol1: 'H', symbol2: 'H'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be', symbol1: 'H', symbol2: 'H'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B', symbol1: 'H', symbol2: 'H'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C', symbol1: 'H', symbol2: 'H'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N', symbol1: 'H', symbol2: 'H'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O', symbol1: 'H', symbol2: 'H'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F', symbol1: 'H', symbol2: 'H'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne', symbol1: 'H', symbol2: 'H'},
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', symbol1: 'H', symbol2: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', symbol1: 'H', symbol2: 'H'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', symbol1: 'H', symbol2: 'H'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be', symbol1: 'H', symbol2: 'H'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B', symbol1: 'H', symbol2: 'H'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C', symbol1: 'H', symbol2: 'H'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N', symbol1: 'H', symbol2: 'H'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O', symbol1: 'H', symbol2: 'H'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F', symbol1: 'H', symbol2: 'H'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne', symbol1: 'H', symbol2: 'H'},
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', symbol1: 'H', symbol2: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', symbol1: 'H', symbol2: 'H'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', symbol1: 'H', symbol2: 'H'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be', symbol1: 'H', symbol2: 'H'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B', symbol1: 'H', symbol2: 'H'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C', symbol1: 'H', symbol2: 'H'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N', symbol1: 'H', symbol2: 'H'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O', symbol1: 'H', symbol2: 'H'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F', symbol1: 'H', symbol2: 'H'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne', symbol1: 'H', symbol2: 'H'},
-];
