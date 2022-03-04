@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { CropService } from 'src/app/services/crop.service';
 import { AreasService } from 'src/app/services/areas.service';
 import { EncyclopediaService } from 'src/app/services/encyclopedia.service';
+import { HomeService } from 'src/app/services/home.service';
 
 @Component({
   selector: 'app-crops',
@@ -14,8 +15,7 @@ export class CropsComponent implements OnInit {
 
   columns: string[] = [
     'nameKey',
-    'year',
-    'day',
+    'calendar',
     'areaKey',
     'quantity',
     'isWater',
@@ -27,6 +27,7 @@ export class CropsComponent implements OnInit {
     public service:CropService,
     public aService:AreasService,
     public eService:EncyclopediaService,
+    public hService:HomeService,
   ) { }
     
   ngOnInit(): void {

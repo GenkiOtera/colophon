@@ -27,8 +27,8 @@ export class HomeService {
     dayRef.snapshotChanges().subscribe(res => {
       let rawDay = res.payload.val();
       this.rawDay = rawDay ? rawDay : 0;
-      this.setSeason();
-      this.setDay();
+      this.season = this.getSeason(this.rawDay);
+      this.day = this.getDay(this.rawDay);
     });
   }
 
@@ -65,29 +65,26 @@ export class HomeService {
     }
   }
 
-  private setSeason(){
-    let dividedDay = this.rawDay ? Math.floor((this.rawDay-1)/maxDay) : 0;
+  public getSeason(rawDay:number):string{
+    let dividedDay = rawDay ? Math.floor((rawDay-1)/maxDay) : 0;
     switch(dividedDay){
       case 0:
-        this.season = 'はる';
-        break;
+        return 'はる';
       case 1:
-        this.season = 'なつ';
-        break;
+        return 'なつ';
       case 2:
-        this.season = 'あき';
-        break;
+        return 'あき';
       case 3:
-        this.season = 'ふゆ';
-        break;
+        return 'ふゆ';
       default:
-        this.season = '';
+        return '';
     }
   }
-  private setDay(){
+  public getDay(rawDay:number):number{
     // 1季節28日なので28で割った余りを現在日付としてセット
-    this.day = this.rawDay ? this.rawDay % 28 : 0;
-    this.day = this.day == 0 ? 28 : this.day;
+    let day = rawDay ? rawDay % 28 : 0;
+    day = day == 0 ? 28 : day;
+    return day;
   }
   private update(year:number, day:number){
     this.db.object('now').update({year:year,day:day});
