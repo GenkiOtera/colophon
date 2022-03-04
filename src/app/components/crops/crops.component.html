@@ -1,35 +1,20 @@
 <div class="container">
   <table mat-table [dataSource]="service.crops" matSort>
-    <ng-container matColumnDef="nameKey">
+    <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>なまえ</th>
       <td mat-cell *matCellDef="let element"> {{ eService.getName(element.nameKey) }} </td>
     </ng-container>
-    <ng-container matColumnDef="areaKey">
+    <ng-container matColumnDef="area">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ばしょ</th>
       <td mat-cell *matCellDef="let element"> {{ aService.getName(element.areaKey) }} </td>
     </ng-container>
     <ng-container matColumnDef="calendar">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-      <!-- <mat-icon>calendar_month</mat-icon> -->
-      ひづけ
-      </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ひづけ</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.year }} / 
-        {{ hService.getSeason(element.day) }} / 
+        {{ element.year }}/
+        {{ hService.getSeason(element.day) }}/
         {{ hService.getDay(element.day) }}
       </td>
-    </ng-container>
-    <ng-container matColumnDef="year">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>ねん</th>
-      <td mat-cell *matCellDef="let element"> {{element.year}} </td>
-    </ng-container>
-    <ng-container matColumnDef="season">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>きせつ</th>
-      <td mat-cell *matCellDef="let element"> {{ hService.getSeason(element.day) }} </td>
-    </ng-container>
-    <ng-container matColumnDef="day">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>ひにち</th>
-      <td mat-cell *matCellDef="let element"> {{ hService.getDay(element.day) }} </td>
     </ng-container>
     <ng-container matColumnDef="quantity">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>こすう</th>
@@ -37,8 +22,35 @@
     </ng-container>
     <ng-container matColumnDef="isWater">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>みず</th>
-      <td mat-cell *matCellDef="let element"> {{element.isWater}} </td>
+      <td mat-cell *matCellDef="let element">
+        <ng-container [ngSwitch]="element.isWater">
+          <mat-icon *ngSwitchCase="true">water_drop</mat-icon>
+          <mat-icon *ngSwitchCase="false">format_color_reset</mat-icon>
+        </ng-container>
+      </td>
     </ng-container>
+    <ng-container matColumnDef="menu">
+      <th mat-header-cell *matHeaderCellDef [ngClass]="'w-75'"></th>
+      <td mat-cell *matCellDef="let element" [ngClass]="'w-75'">
+        <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
+        <mat-menu #menu="matMenu">
+            <label mat-menu-item disabled>
+              {{ eService.getName(element.nameKey) }}（{{ aService.getName(element.areaKey) }}）
+            </label>
+            <button mat-menu-item (click)="clickEditButton()">
+              <mat-icon>edit</mat-icon>
+              <span>へんしゅう</span>
+            </button>
+            <button mat-menu-item (click)="clickDeleteButton()">
+              <mat-icon>delete</mat-icon>
+              <span>さくじょ</span>
+            </button>
+          </mat-menu>
+      </td>
+    </ng-container>
+
+
+    
     <tr mat-header-row *matHeaderRowDef="columns"></tr>
     <tr mat-row *matRowDef="let row; columns: columns;"></tr>
   </table>

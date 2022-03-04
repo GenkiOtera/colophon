@@ -14,11 +14,12 @@ import { HomeService } from 'src/app/services/home.service';
 export class CropsComponent implements OnInit {
 
   columns: string[] = [
-    'nameKey',
+    'name',
     'calendar',
-    'areaKey',
+    'area',
     'quantity',
     'isWater',
+    'menu',
   ];
 
   @ViewChild(MatSort) sort?: MatSort;
@@ -34,4 +35,7 @@ export class CropsComponent implements OnInit {
   }
   openDialog(){
   }
+
+  clickEditButton(){}
+  clickDeleteButton(){}
 }
