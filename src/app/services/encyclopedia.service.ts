@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
 
 import { selectedItem } from '../models/encyclopedia.selectedItem.model';
 
@@ -17,9 +17,16 @@ export class EncyclopediaService {
 
   constructor(private db: AngularFireDatabase) {
     this.categories = db.object('category').valueChanges();
-    this.seasons = db.object('きせつ').valueChanges();
-    this.crops = db.object('encyclopedia').valueChanges();
-    db.object('encyclopedia').snapshotChanges().subscribe((crops:any) => {
+
+    let seasonRef:AngularFireObject<any> = db.object('きせつ');
+    this.seasons = seasonRef.valueChanges();
+    seasonRef.snapshotChanges().subscribe((season:any) => {
+      this.seasonNames = season.payload.val();
+    })
+
+    let cropRef:AngularFireObject<any> = db.object('encyclopedia');
+    this.crops = cropRef.valueChanges();
+    cropRef.snapshotChanges().subscribe((crops:any) => {
       let obj = crops.payload.val();
       let keys = Object.keys(obj);
       keys.forEach(key => {
@@ -40,6 +47,9 @@ export class EncyclopediaService {
     this.db.list('encyclopedia/'+key).remove();
   }
 
+  getSeason(id:string){
+    return this.seasonNames[id] ? this.seasonNames[id] : '-';
+  }
   getName(key:string){
     return this.cropNames[key] ? this.cropNames[key] : '-';
   }

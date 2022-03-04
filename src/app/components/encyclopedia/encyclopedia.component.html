@@ -39,7 +39,7 @@
                 <ng-container *ngFor="let element of crop.value | keyvalue : keyDescOrder">
                     <div *ngIf="element.key!='category'">
                         <mat-list-item *ngIf="element.key=='day'">ひにち　：{{element.value}}</mat-list-item>
-                        <mat-list-item *ngIf="element.key=='season'">きせつ　：{{element.value}}</mat-list-item>
+                        <mat-list-item *ngIf="element.key=='season'">きせつ　：{{service.getSeason(element.value)}}</mat-list-item>
                         <mat-list-item *ngIf="element.key=='count'">かいすう：{{element.value}}</mat-list-item>
                         <mat-divider></mat-divider>
                     </div>
