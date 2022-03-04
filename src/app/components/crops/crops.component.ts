@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { KeyValue } from '@angular/common';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { CropService } from 'src/app/services/crop.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-crops',
@@ -19,18 +18,13 @@ export class CropsComponent implements OnInit {
     'quantity',
     'isWater',
   ];
-  crops = new MatTableDataSource<any>();
 
+  @ViewChild(MatSort) sort?: MatSort;
+  
   constructor(public service:CropService) { }
     
   ngOnInit(): void {
   }
   openDialog(){
   }
-
-  // Compare Function's
-  originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>):number => 0;
-  valueAscOrder = (a: KeyValue<string,any>, b: KeyValue<string,any>): number => {
-    return a.value['nameKey'].localeCompare(b.value['nameKey']);
-  };
 }

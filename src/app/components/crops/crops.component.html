@@ -1,28 +1,28 @@
 <div class="container">
-  <table mat-table [dataSource]="service.crops | async | keyvalue : valueAscOrder">
+  <table mat-table [dataSource]="service.crops" matSort>
     <ng-container matColumnDef="nameKey">
-      <th mat-header-cell *matHeaderCellDef>なまえ</th>
-      <td mat-cell *matCellDef="let element"> {{element.value.nameKey}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>なまえ</th>
+      <td mat-cell *matCellDef="let element"> {{element.nameKey}} </td>
     </ng-container>
     <ng-container matColumnDef="areaKey">
-      <th mat-header-cell *matHeaderCellDef>ばしょ</th>
-      <td mat-cell *matCellDef="let element"> {{element.value.areaKey}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ばしょ</th>
+      <td mat-cell *matCellDef="let element"> {{element.areaKey}} </td>
     </ng-container>
     <ng-container matColumnDef="year">
-      <th mat-header-cell *matHeaderCellDef>ねん</th>
-      <td mat-cell *matCellDef="let element"> {{element.value.year}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ねん</th>
+      <td mat-cell *matCellDef="let element"> {{element.year}} </td>
     </ng-container>
     <ng-container matColumnDef="day">
-      <th mat-header-cell *matHeaderCellDef>ひにち</th>
-      <td mat-cell *matCellDef="let element"> {{element.value.day}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ひにち</th>
+      <td mat-cell *matCellDef="let element"> {{element.day}} </td>
     </ng-container>
     <ng-container matColumnDef="quantity">
-      <th mat-header-cell *matHeaderCellDef>こすう</th>
-      <td mat-cell *matCellDef="let element"> {{element.value.quantity}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>こすう</th>
+      <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
     </ng-container>
     <ng-container matColumnDef="isWater">
-      <th mat-header-cell *matHeaderCellDef>みず</th>
-      <td mat-cell *matCellDef="let element"> {{element.value.isWater}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>みず</th>
+      <td mat-cell *matCellDef="let element"> {{element.isWater}} </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="columns"></tr>
     <tr mat-row *matRowDef="let row; columns: columns;"></tr>

@@ -20,6 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -80,6 +81,7 @@ import { EncyclopediaDialog } from './components/dialogs/encyclopedia.dialog';
     MatSelectModule,
     MatSidenavModule,
     MatSnackBarModule,
+    MatSortModule,
     MatTableModule,
     MatToolbarModule,
   ],
