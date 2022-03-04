@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +8,20 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 export class AreasService {
 
   areas: Observable<any>;
+  areaNames:{[key:string]:string} = {};
 
   constructor(private db: AngularFireDatabase) {
-    this.areas = db.object('area').valueChanges();
+    let areaRef:AngularFireObject<any> = db.object('area');
+    this.areas = areaRef.valueChanges();
+    areaRef.snapshotChanges().subscribe(
+      (area:any) => {
+        let obj = area.payload.val();
+        let keys = Object.keys(obj);
+        keys.forEach(key => {
+          this.areaNames[key] = obj[key]['name'];
+        })
+      }
+    )
   }
 
   save(name:string){
@@ -23,5 +34,9 @@ export class AreasService {
 
   delete(key:string){
     this.db.list('area/'+key).remove();
+  }
+
+  getName(key:string){
+    return this.areaNames[key] ? this.areaNames[key] : '-';
   }
 }

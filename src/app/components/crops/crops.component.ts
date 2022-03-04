@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
 
 import { CropService } from 'src/app/services/crop.service';
-import { MatSort } from '@angular/material/sort';
+import { AreasService } from 'src/app/services/areas.service';
 import { EncyclopediaService } from 'src/app/services/encyclopedia.service';
 
 @Component({
@@ -24,6 +25,7 @@ export class CropsComponent implements OnInit {
   
   constructor(
     public service:CropService,
+    public aService:AreasService,
     public eService:EncyclopediaService,
   ) { }
     

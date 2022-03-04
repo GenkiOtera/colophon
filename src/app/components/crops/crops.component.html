@@ -2,11 +2,11 @@
   <table mat-table [dataSource]="service.crops" matSort>
     <ng-container matColumnDef="nameKey">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>なまえ</th>
-      <td mat-cell *matCellDef="let element"> {{eService.getName(element.nameKey)}} </td>
+      <td mat-cell *matCellDef="let element"> {{ eService.getName(element.nameKey) }} </td>
     </ng-container>
     <ng-container matColumnDef="areaKey">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ばしょ</th>
-      <td mat-cell *matCellDef="let element"> {{element.areaKey}} </td>
+      <td mat-cell *matCellDef="let element"> {{ aService.getName(element.areaKey) }} </td>
     </ng-container>
     <ng-container matColumnDef="year">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ねん</th>

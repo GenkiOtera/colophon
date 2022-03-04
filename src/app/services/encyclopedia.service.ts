@@ -11,6 +11,7 @@ export class EncyclopediaService {
   
   categories: Observable<any>;
   seasons: Observable<any>;
+  seasonNames:{[key:string]:string} = {};
   crops: Observable<any>;
   cropNames:{[key:string]:string} = {};
 
@@ -22,10 +23,6 @@ export class EncyclopediaService {
       let obj = crops.payload.val();
       let keys = Object.keys(obj);
       keys.forEach(key => {
-        let crop:{[key:string]:string} = {
-          key:key,
-          name:obj[key]['name'],
-        }
         this.cropNames[key] = obj[key]['name'];
       })
     });
