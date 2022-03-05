@@ -28,6 +28,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { REGION } from '@angular/fire/compat/functions';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 // Components
@@ -85,7 +86,9 @@ import { EncyclopediaDialog } from './components/dialogs/encyclopedia.dialog';
     MatTableModule,
     MatToolbarModule,
   ],
-  providers: [],
+  providers: [
+    { provide: REGION, useValue: 'asia-southeast1' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "colophon",
     "public": "dist/colophon",
     "ignore": [
       "firebase.json",
