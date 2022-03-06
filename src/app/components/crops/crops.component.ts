@@ -1,7 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 
 import { CropService } from 'src/app/services/crop.service';
+import { CropsDialog } from '../dialogs/crops.dialog';
+import { Crop } from '../../models/crop.model';
+
 import { AreasService } from 'src/app/services/areas.service';
 import { EncyclopediaService } from 'src/app/services/encyclopedia.service';
 import { HomeService } from 'src/app/services/home.service';
@@ -29,13 +33,54 @@ export class CropsComponent implements OnInit {
     public aService:AreasService,
     public eService:EncyclopediaService,
     public hService:HomeService,
+    public dialog: MatDialog,
   ) { }
     
   ngOnInit(): void {
   }
-  openDialog(){
-  }
 
+  clickAddButton(){
+    let data:Crop = this.createSelectedItem(true);
+    this.openDialog(true, data);
+  }
   clickEditButton(){}
   clickDeleteButton(){}
+
+  // Private Method's
+  private createSelectedItem(isNew:boolean, param?:any):Crop{
+    let item:Crop;
+    if(isNew){
+      item = {
+        key: '',
+        areaKey : '',
+        day : 1,
+        isWater : true,
+        nameKey : '',
+        quantity : 1,
+        year : 0,
+      }
+    }else{
+      item = {        
+        key: param['key'],
+        areaKey : param['areaKey'],
+        day : param['day'],
+        isWater : param['isWater'],
+        nameKey : param['nameKey'],
+        quantity : param['quantity'],
+        year : param['year'],
+      }
+    }
+    return item;    
+  }
+
+  private openDialog(isNew: boolean, data:Crop){
+    const dialogRef = this.dialog
+    .open(CropsDialog, {
+      maxWidth: '250px',
+      width: '80vw',
+      maxHeight: '570px',
+      height: '80vh',
+      data: {isNew:isNew, param:data},
+    })
+  }
 }

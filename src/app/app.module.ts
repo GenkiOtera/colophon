@@ -20,7 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -39,6 +39,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AreasComponent } from './components/areas/areas.component';
 import { AreasDialog } from './components/dialogs/areas.dialog';
 import { CropsComponent } from './components/crops/crops.component';
+import { CropsDialog } from './components/dialogs/crops.dialog';
 import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.component';
 import { EncyclopediaDialog } from './components/dialogs/encyclopedia.dialog';
 
@@ -49,6 +50,7 @@ import { EncyclopediaDialog } from './components/dialogs/encyclopedia.dialog';
     AreasDialog,
     AuthComponent,
     CropsComponent,
+    CropsDialog,
     EncyclopediaComponent,
     EncyclopediaDialog,
     HeaderComponent,

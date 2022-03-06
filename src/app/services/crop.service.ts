@@ -3,6 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Crop } from '../models/crop.model'
+import { selectedItem } from '../models/crop.selectedItem.model';
 import { EncyclopediaService } from './encyclopedia.service';
 
 @Injectable({
@@ -35,5 +36,17 @@ export class CropService {
       crops.push(crop);
     });
     this.crops = new MatTableDataSource(crops);
+  }
+
+  save(param:selectedItem){
+    this.db.list('encyclopedia').push(param);
+  }
+
+  update(key:string, param:selectedItem){
+    this.db.list('encyclopedia').update(key,param);
+  }
+
+  delete(key:string){
+    this.db.list('encyclopedia/'+key).remove();
   }
 }
