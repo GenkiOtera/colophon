@@ -8,8 +8,32 @@
     flex: 1;
     overflow-y: auto;
 }
-table{
-    width: 100%;
+.mat-header-cell, .mat-cell {
+    padding-left: 10px;
+    border-right: 1px solid #e0e0e0;
+}
+.mat-table-sticky-border-elem-right {
+    border-left: 1px solid #e0e0e0;
+}
+td.mat-column-name {
+    min-width: 100px;
+}
+td.mat-column-area {
+    min-width: 100px;
+}
+td.mat-column-calendar {
+    min-width: 90px;
+}
+td.mat-column-quantity {
+    min-width: 45px;
+    padding-left: 20px;
+}
+td.mat-column-isWater {
+    min-width: 45px;
+    width: 50px;
+}
+td.mat-column-menu {
+    width: 5px;
 }
 .add_button{
     position: fixed;
