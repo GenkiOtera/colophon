@@ -11,7 +11,7 @@ import { EncyclopediaService } from './encyclopedia.service';
 export class CropService {
 
   crops = new MatTableDataSource<Crop>();
-  
+
   constructor(private db:AngularFireDatabase, public eService:EncyclopediaService) {
     db.object('crop').snapshotChanges().subscribe((val:any) => {
       this.createTableData(val);
@@ -37,15 +37,15 @@ export class CropService {
     this.crops = new MatTableDataSource(crops);
   }
 
-  save(param:Crop){
-    this.db.list('encyclopedia').push(param);
+  save(param:any){
+    this.db.list('crop').push(param);
   }
 
   update(param:Crop){
-    this.db.list('encyclopedia').update(param.key,param);
+    this.db.list('crop').update(param.key,param);
   }
 
   delete(key:string){
-    this.db.list('encyclopedia/'+key).remove();
+    this.db.list('crop/'+key).remove();
   }
 }

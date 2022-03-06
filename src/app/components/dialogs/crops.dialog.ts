@@ -186,7 +186,7 @@ export class CropsDialog {
   saveData(){
     // Todo firebaseサービスの保存メソッドを呼ぶ
     if(this.data.isNew){
-      // this.service.save(this.data.param);
+      this.service.save(this.createParam());
     }else{
       // this.service.update(this.data.key, this.data.param);
     }
@@ -194,5 +194,16 @@ export class CropsDialog {
   }
   exit(){
     this.dialogRef.close();
+  }
+
+  private createParam(){
+    return {
+      nameKey : this.data.param.nameKey,
+      year : this.data.param.year,
+      day : this.hService.getRawDay(parseInt(this.data.param.season), this.data.param.day),
+      areaKey : this.data.param.areaKey,
+      quantity : this.data.param.quantity,
+      isWater : this.data.param.isWater,
+    }
   }
 }

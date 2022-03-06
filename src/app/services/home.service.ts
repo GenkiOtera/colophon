@@ -70,6 +70,10 @@ export class HomeService {
     return seasonNum;
   }
 
+  public getRawDay(seasonNum:number, day:number){
+    return (seasonNum * maxDay) + day;
+  }
+
   public getSeason(rawDay:number):string{
     let dividedDay = rawDay ? Math.floor((rawDay-1)/maxDay) : 0;
     switch(dividedDay){
