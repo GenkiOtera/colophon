@@ -8,6 +8,9 @@
     flex: 1;
     overflow-y: auto;
 }
+table{
+    min-width: 100%;
+}
 .mat-header-cell, .mat-cell {
     padding-left: 10px;
     border-right: 1px solid #e0e0e0;

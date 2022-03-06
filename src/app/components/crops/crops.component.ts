@@ -76,9 +76,9 @@ export class CropsComponent implements OnInit {
   private openDialog(isNew: boolean, data:Crop){
     const dialogRef = this.dialog
     .open(CropsDialog, {
-      maxWidth: '250px',
-      width: '80vw',
-      maxHeight: '570px',
+      maxWidth: '375px',
+      width: '95vw',
+      maxHeight: '480px',
       height: '80vh',
       data: {isNew:isNew, param:data},
     })
