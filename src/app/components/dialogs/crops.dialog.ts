@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { CropService } from '../../services/crop.service'; 
+import { EncyclopediaService } from 'src/app/services/encyclopedia.service';
 
 @Component({
   selector: 'crop-dialog',
@@ -13,8 +14,12 @@ import { CropService } from '../../services/crop.service';
     <form [formGroup]="form">
       <mat-form-field appearance="fill" [hideRequiredMarker]="true">
         <mat-label>なまえ</mat-label>
-        <input matInput formControlName="nameKey" type="text">
-        <mat-error *ngIf="form.invalid">にゅうりょくしてください</mat-error>
+        <mat-select formControlName="nameKey">
+            <mat-option *ngFor="let cropName of eService.cropNames | keyvalue" [value]="cropName.key">
+                {{ cropName.value }}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.invalid">せんたくしてください</mat-error>
       </mat-form-field>
       <!-- <mat-form-field appearance="fill" [hideRequiredMarker]="true">
         <mat-label>しゅるい</mat-label>
@@ -98,6 +103,7 @@ export class CropsDialog {
       @Inject(MAT_DIALOG_DATA)
       public data:any,
       public service: CropService,
+      public eService: EncyclopediaService,
     ) {
       if(data.isNew){
         this.title = "ついか"
