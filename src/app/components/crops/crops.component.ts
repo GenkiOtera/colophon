@@ -53,11 +53,11 @@ export class CropsComponent implements OnInit {
       item = {
         key: '',
         areaKey : '',
-        day : 1,
+        day : this.hService.rawDay,
         isWater : true,
         nameKey : '',
         quantity : 1,
-        year : 0,
+        year : this.hService.year,
       }
     }else{
       item = {        

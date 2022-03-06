@@ -11,14 +11,7 @@ import { EncyclopediaService } from './encyclopedia.service';
 export class CropService {
 
   crops = new MatTableDataSource<Crop>();
-
-  seasons: {[key:number]: string} = {
-    1:'はる',
-    2:'なつ',
-    3:'あき',
-    4:'ふゆ',
-  }
-
+  
   constructor(private db:AngularFireDatabase, public eService:EncyclopediaService) {
     db.object('crop').snapshotChanges().subscribe((val:any) => {
       this.createTableData(val);

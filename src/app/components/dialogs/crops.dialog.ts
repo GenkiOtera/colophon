@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CropService } from '../../services/crop.service'; 
 import { AreasService } from 'src/app/services/areas.service';
 import { EncyclopediaService } from 'src/app/services/encyclopedia.service';
+import { HomeService } from 'src/app/services/home.service';
 
 @Component({
   selector: 'crop-dialog',
@@ -33,7 +34,7 @@ import { EncyclopediaService } from 'src/app/services/encyclopedia.service';
         <mat-form-field class="calendar-form-field" appearance="fill" [hideRequiredMarker]="true">
           <mat-label>きせつ</mat-label>
           <mat-select formControlName="season">
-              <mat-option *ngFor="let season of service.seasons | keyvalue" [value]="season.key">
+              <mat-option *ngFor="let season of seasons | keyvalue" [value]="season.key">
                   {{ season.value }}
               </mat-option>
           </mat-select>
@@ -134,6 +135,12 @@ export class CropsDialog {
   quantityLength = 99;
 
   years = new Array<number>(this.yearLength);
+  seasons: {[key:string]: string} = {
+    0:'はる',
+    1:'なつ',
+    2:'あき',
+    3:'ふゆ',
+  }
   days = new Array<number>(this.dayLength);
   quantities = new Array<number>(this.quantityLength);
 
@@ -142,8 +149,8 @@ export class CropsDialog {
   form = new FormGroup({
     nameKey: new FormControl(this.data.param.nameKey, Validators.required),
     year: new FormControl(this.data.param.year, Validators.required),
-    season: new FormControl(this.data.param.day, Validators.required),
-    day: new FormControl(this.data.param.day, Validators.required),
+    season: new FormControl(this.hService.getSeasonNum(this.data.param.day).toString(), Validators.required),
+    day: new FormControl(this.hService.getDay(this.data.param.day), Validators.required),
     areaKey: new FormControl(this.data.param.areaKey, Validators.required),
     quantity: new FormControl(this.data.param.quantity, Validators.required),
     isWater: new FormControl(this.data.param.isWater),
@@ -156,6 +163,7 @@ export class CropsDialog {
       public service: CropService,
       public aService: AreasService,
       public eService: EncyclopediaService,
+      public hService: HomeService,
     ) {
       if(data.isNew){
         this.title = "ついか"
@@ -186,10 +194,5 @@ export class CropsDialog {
   }
   exit(){
     this.dialogRef.close();
-  }
-
-  // keyvalueパイプ用の並び順メソッド
-  originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>) => {
-    return 0;
   }
 }

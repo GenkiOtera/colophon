@@ -65,6 +65,11 @@ export class HomeService {
     }
   }
 
+  public getSeasonNum(rawDay:number):number{
+    let seasonNum = rawDay ? Math.floor((rawDay-1)/maxDay) : 0;
+    return seasonNum;
+  }
+
   public getSeason(rawDay:number):string{
     let dividedDay = rawDay ? Math.floor((rawDay-1)/maxDay) : 0;
     switch(dividedDay){
@@ -82,8 +87,8 @@ export class HomeService {
   }
   public getDay(rawDay:number):number{
     // 1季節28日なので28で割った余りを現在日付としてセット
-    let day = rawDay ? rawDay % 28 : 0;
-    day = day == 0 ? 28 : day;
+    let day = rawDay ? rawDay % maxDay : 0;
+    day = day == 0 ? maxDay : day;
     return day;
   }
   private update(year:number, day:number){
