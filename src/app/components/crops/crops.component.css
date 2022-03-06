@@ -25,15 +25,17 @@ td.mat-column-area {
     min-width: 100px;
 }
 td.mat-column-calendar {
-    width: 90px;
+    min-width: 90px;
+    max-width: 90px;
 }
 td.mat-column-quantity {
-    width: 45px;
+    min-width: 45px;
+    max-width: 45px;
     padding-left: 20px;
 }
 td.mat-column-isWater {
-    width: 45px;
-    width: 50px;
+    min-width: 45px;
+    max-width: 45px;
 }
 td.mat-column-menu {
     width: 5px;
