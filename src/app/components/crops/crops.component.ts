@@ -44,7 +44,9 @@ export class CropsComponent implements OnInit {
     this.openDialog(true, data);
   }
   clickEditButton(){}
-  clickDeleteButton(){}
+  clickDeleteButton(key:string):void{
+    this.service.delete(key);
+  }
 
   // Private Method's
   private createSelectedItem(isNew:boolean, param?:any):Crop{
