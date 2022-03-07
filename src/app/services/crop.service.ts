@@ -20,7 +20,10 @@ export class CropService {
 
   private createTableData(data:any):void{
     let obj = data.payload.val();
-    if(!obj) return;
+    if(!obj){
+      this.crops.data = [];
+      return;
+    } 
     let keys = Object.keys(obj);
     let crops:Crop[] = [];
     keys.forEach(key => {
@@ -35,7 +38,7 @@ export class CropService {
       }
       crops.push(crop);
     });
-    this.crops = new MatTableDataSource(crops);
+    this.crops.data = crops;
   }
 
   save(param:any){
