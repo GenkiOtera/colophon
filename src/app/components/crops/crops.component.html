@@ -1,5 +1,5 @@
 <div class="container">
-  <table mat-table [dataSource]="service.crops" matSort>
+  <table mat-table [dataSource]="service.crops" matSort *ngIf="service.crops.data.length > 0">
     <ng-container matColumnDef="name" sticky>
       <th mat-header-cell *matHeaderCellDef mat-sort-header>なまえ</th>
       <td mat-cell *matCellDef="let element"> {{ eService.getName(element.nameKey) }} </td>
@@ -37,7 +37,7 @@
             <label mat-menu-item disabled>
               {{ eService.getName(element.nameKey) }}（{{ aService.getName(element.areaKey) }}）
             </label>
-            <button mat-menu-item (click)="clickEditButton()">
+            <button mat-menu-item (click)="clickEditButton(element)">
               <mat-icon>edit</mat-icon>
               <span>へんしゅう</span>
             </button>

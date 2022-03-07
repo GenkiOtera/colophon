@@ -43,7 +43,10 @@ export class CropsComponent implements OnInit {
     let data:Crop = this.createSelectedItem(true);
     this.openDialog(true, data);
   }
-  clickEditButton(){}
+  clickEditButton(element:any){
+    let data:Crop = this.createSelectedItem(false, element);
+    this.openDialog(false, data);
+  }
   clickDeleteButton(key:string):void{
     this.service.delete(key);
   }
@@ -62,14 +65,14 @@ export class CropsComponent implements OnInit {
         year : this.hService.year,
       }
     }else{
-      item = {        
-        key: param['key'],
-        areaKey : param['areaKey'],
-        day : param['day'],
-        isWater : param['isWater'],
-        nameKey : param['nameKey'],
-        quantity : param['quantity'],
-        year : param['year'],
+      item = {
+        key: param.key,
+        areaKey : param.areaKey,
+        day : param.day,
+        isWater : param.isWater,
+        nameKey : param.nameKey,
+        quantity : param.quantity,
+        year : param.year,
       }
     }
     return item;    

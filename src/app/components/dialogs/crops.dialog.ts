@@ -147,6 +147,7 @@ export class CropsDialog {
   isWaterStatus:string = this.data.param.isWater ? 'ON' : 'OFF';
 
   form = new FormGroup({
+    key : new FormControl(this.data.param.key),
     nameKey: new FormControl(this.data.param.nameKey, Validators.required),
     year: new FormControl(this.data.param.year, Validators.required),
     season: new FormControl(this.hService.getSeasonNum(this.data.param.day).toString(), Validators.required),
@@ -184,11 +185,10 @@ export class CropsDialog {
   };
 
   saveData(){
-    // Todo firebaseサービスの保存メソッドを呼ぶ
     if(this.data.isNew){
       this.service.save(this.createParam());
     }else{
-      // this.service.update(this.data.key, this.data.param);
+      this.service.update(this.data.param.key, this.createParam());
     }
     this.exit();
   }

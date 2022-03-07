@@ -20,6 +20,7 @@ export class CropService {
 
   private createTableData(data:any):void{
     let obj = data.payload.val();
+    if(!obj) return;
     let keys = Object.keys(obj);
     let crops:Crop[] = [];
     keys.forEach(key => {
@@ -41,8 +42,8 @@ export class CropService {
     this.db.list('crop').push(param);
   }
 
-  update(param:Crop){
-    this.db.list('crop').update(param.key,param);
+  update(key:string, param:any){
+    this.db.list('crop').update(key, param);
   }
 
   delete(key:string){
