@@ -39,6 +39,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { HomeComponent } from './components/home/home.component';
 import { AreasComponent } from './components/areas/areas.component';
 import { AreasDialog } from './components/dialogs/areas.dialog';
+import { ConfirmDialog } from './components/dialogs/confirm.dialog';
 import { CropsComponent } from './components/crops/crops.component';
 import { CropsDialog } from './components/dialogs/crops.dialog';
 import { EncyclopediaComponent } from './components/encyclopedia/encyclopedia.component';
@@ -50,6 +51,7 @@ import { EncyclopediaDialog } from './components/dialogs/encyclopedia.dialog';
     AreasComponent,
     AreasDialog,
     AuthComponent,
+    ConfirmDialog,
     CropsComponent,
     CropsDialog,
     EncyclopediaComponent,

@@ -7,6 +7,7 @@ import { CropsDialog } from '../dialogs/crops.dialog';
 import { Crop } from '../../models/crop.model';
 
 import { AreasService } from 'src/app/services/areas.service';
+import { ConfirmDialog } from '../dialogs/confirm.dialog';
 import { EncyclopediaService } from 'src/app/services/encyclopedia.service';
 import { HomeService } from 'src/app/services/home.service';
 
@@ -48,7 +49,13 @@ export class CropsComponent implements OnInit {
     this.openDialog(false, data);
   }
   clickDeleteButton(key:string):void{
-    this.service.delete(key);
+    const confirmDialogRef = this.dialog
+    .open(ConfirmDialog, {
+      data: {name:'さくじょ'},
+    })
+    confirmDialogRef.afterClosed().subscribe(res => {
+      if(res) this.service.delete(key);
+    })
   }
 
   // Private Method's
