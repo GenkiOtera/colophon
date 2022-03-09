@@ -46,7 +46,7 @@
                 </ng-container>
                 <div class="button-container">
                     <button mat-mini-fab color="accent" type="button" (click)="clickEditButton(crop.key, crop.value)"><mat-icon>edit</mat-icon></button>
-                    <button mat-mini-fab color="warn" type="button" (click)="clickDeleteButton(crop.key)"><mat-icon>delete</mat-icon></button>
+                    <button mat-mini-fab color="warn" type="button" (click)="clickDeleteButton(crop.key, crop.value['name'])"><mat-icon>delete</mat-icon></button>
                 </div>
             </mat-list>
         </mat-expansion-panel>

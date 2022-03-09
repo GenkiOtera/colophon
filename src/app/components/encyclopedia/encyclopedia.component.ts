@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { selectedItem } from '../../models/encyclopedia.selectedItem.model';
 import { EncyclopediaDialog } from '../dialogs/encyclopedia.dialog';
 import { EncyclopediaService } from '../../services/encyclopedia.service';
+import { ConfirmDialog } from '../dialogs/confirm.dialog';
 
 @Component({
   selector: 'app-encyclopedia',
@@ -52,8 +53,14 @@ export class EncyclopediaComponent implements OnInit {
     let data:selectedItem = this.createSelectedItem(false, param);
     this.openDialog(false, key, data);
   }
-  clickDeleteButton(key:string): void {
-    this.service.delete(key);
+  clickDeleteButton(key:string, name:string): void {
+    const confirmDialogRef = this.dialog
+    .open(ConfirmDialog, {
+      data: {name:name, action:'さくじょ'},
+    })
+    confirmDialogRef.afterClosed().subscribe(res => {
+      if(res) this.service.delete(key);
+    })
   }
 
   changeSeasonFilter(){
