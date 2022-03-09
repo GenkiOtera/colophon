@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 
@@ -16,7 +16,7 @@ import { HomeService } from 'src/app/services/home.service';
   templateUrl: 'crops.component.html',
   styleUrls: ['crops.component.css']
 })
-export class CropsComponent implements OnInit {
+export class CropsComponent {
 
   columns: string[] = [
     'name',
@@ -34,12 +34,9 @@ export class CropsComponent implements OnInit {
     public aService:AreasService,
     public eService:EncyclopediaService,
     public hService:HomeService,
-    public dialog: MatDialog,
+    public dialog:MatDialog,
   ) { }
-    
-  ngOnInit(): void {
-  }
-
+  
   clickAddButton(){
     let data:Crop = this.createSelectedItem(true);
     this.openDialog(true, data);

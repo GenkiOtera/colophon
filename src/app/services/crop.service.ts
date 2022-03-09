@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 import { Crop } from '../models/crop.model'
 import { EncyclopediaService } from './encyclopedia.service';
@@ -10,11 +10,16 @@ import { EncyclopediaService } from './encyclopedia.service';
 })
 export class CropService {
 
+  @ViewChild(MatTable)
+  table?:MatTable<Crop>;
   crops = new MatTableDataSource<Crop>();
 
   constructor(private db:AngularFireDatabase, public eService:EncyclopediaService) {
     db.object('crop').snapshotChanges().subscribe((val:any) => {
       this.createTableData(val);
+      setTimeout(()=>{
+        this.table?.renderRows();
+      },10)
     })
   }
 
