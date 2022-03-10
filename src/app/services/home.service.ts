@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 
+import { ConfirmDialog } from '../components/dialogs/confirm.dialog';
 import { DayCrop } from '../models/day-crop.model';
 import { CropService } from './crop.service';
 import { EncyclopediaService } from './encyclopedia.service';
@@ -23,6 +25,7 @@ export class HomeService {
 
   constructor(
     private db:AngularFireDatabase,
+    public dialog:MatDialog,
     public cService:CropService,
     public eService:EncyclopediaService,
   ) {
@@ -77,6 +80,26 @@ export class HomeService {
     }
   }
 
+  public onHarvest(element:any){
+    const confirmDialogRef = this.dialog
+    .open(ConfirmDialog, {
+      data: {name:element.name, action:'しゅうかく'},
+    });
+    confirmDialogRef.afterClosed().subscribe(res => {
+      // if(res) this.service.delete(element.key, element.areaKey);
+    });
+  }
+
+  public deleteCrop(element:any){
+    const confirmDialogRef = this.dialog
+    .open(ConfirmDialog, {
+      data: {name:element.name, action:'さくじょ'},
+    });
+    confirmDialogRef.afterClosed().subscribe(res => {
+      // if(res) this.cService.delete(element.key, element.areaKey);
+    });
+  }
+
   public getSeasonNum(rawDay:number):number{
     let seasonNum = rawDay ? Math.floor((rawDay-1)/maxDay) : 0;
     return seasonNum;
@@ -113,8 +136,6 @@ export class HomeService {
     return tableData;
   }
   public getStatus(dayCrop:DayCrop):number{
-    console.log('now day : ' + this.fullDay);
-
     let result:number;
 
     // if(dayCrop.count <= 0){

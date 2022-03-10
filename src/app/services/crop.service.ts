@@ -95,8 +95,6 @@ export class CropService {
       }
     });
     this.crops.data = crops;
-    console.log('created dayCrop data');
-    console.log(this.dayCrops);
   }
 
   private createDayCrop(key:string,obj:any):DayCrop{
