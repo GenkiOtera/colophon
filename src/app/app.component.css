@@ -1,7 +1,7 @@
 .sidenav {
     width: 200px;
     max-width: 50%;
-    padding: 20px;
+    /* padding: 10px; */
 }
 .main-container {
     height: 100vh;

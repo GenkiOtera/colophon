@@ -35,7 +35,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 // Components
 import { AuthComponent } from './components/auth/auth.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { HomeComponent } from './components/home/home.component';
 import { AreasComponent } from './components/areas/areas.component';
 import { AreasDialog } from './components/dialogs/areas.dialog';
@@ -58,7 +57,6 @@ import { EncyclopediaDialog } from './components/dialogs/encyclopedia.dialog';
     EncyclopediaDialog,
     HeaderComponent,
     HomeComponent,
-    SidenavComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -2,8 +2,11 @@
     <mat-sidenav class="sidenav" [(opened)]="opened" mode="push">
         <!-- コンテンツの一覧 -->
         <mat-selection-list [multiple]="false">
-            <mat-list-option *ngFor="let menu of menuIndex | keyvalue" (click)="jump(menu.key)">
-                <mat-icon mat-list-icon>grading</mat-icon>
+            <mat-list-option *ngFor="let menu of menuIndex | keyvalue" [ngSwitch]="menu.key" (click)="jump(menu.key)">
+                <mat-icon mat-list-icon *ngSwitchCase="1">home</mat-icon>
+                <mat-icon mat-list-icon *ngSwitchCase="2">place</mat-icon>
+                <mat-icon mat-list-icon *ngSwitchCase="3">park</mat-icon>
+                <mat-icon mat-list-icon *ngSwitchCase="4">menu_book</mat-icon>
                 <div mat-line>{{menu.value}}</div>
             </mat-list-option>
             <mat-divider></mat-divider>
