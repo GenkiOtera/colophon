@@ -67,6 +67,7 @@ export class CropService {
         year:obj[key]['year'],
         day:obj[key]['day'],
         quantity:obj[key]['quantity'],
+        count:obj[key]['count'],
         isWater:obj[key]['isWater'],
       }
       crops.push(crop);

@@ -5,5 +5,6 @@ export interface Crop {
     day:number;
     areaKey:string;
     quantity:number;
+    count:number;
     isWater:boolean;
 }

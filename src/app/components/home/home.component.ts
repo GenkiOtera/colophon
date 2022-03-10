@@ -36,13 +36,13 @@ export class HomeComponent implements OnInit {
 }
 
 const CROP_TEST_DATA: Crop[] = [
-  {key: 'keyProp', nameKey: 'nameKeyProp', year: 0, day:1, areaKey:'areaKeyProp',quantity:0,isWater:true },
-  {key: 'keyProp', nameKey: 'nameKeyProp', year: 0, day:2, areaKey:'areaKeyProp',quantity:10,isWater:true },
-  {key: 'keyProp', nameKey: 'nameKeyProp', year: 0, day:3, areaKey:'areaKeyProp',quantity:20,isWater:true },
-  {key: 'keyProp', nameKey: 'nameKeyProp', year: 1, day:1, areaKey:'areaKeyProp',quantity:30,isWater:true },
-  {key: 'keyProp', nameKey: 'nameKeyProp', year: 1, day:2, areaKey:'areaKeyProp',quantity:40,isWater:true },
-  {key: 'keyProp', nameKey: 'nameKeyProp', year: 1, day:3, areaKey:'areaKeyProp',quantity:50,isWater:true },
-  {key: 'keyProp', nameKey: 'nameKeyProp', year: 2, day:1, areaKey:'areaKeyProp',quantity:60,isWater:true },
-  {key: 'keyProp', nameKey: 'nameKeyProp', year: 2, day:2, areaKey:'areaKeyProp',quantity:70,isWater:true },
-  {key: 'keyProp', nameKey: 'nameKeyProp', year: 2, day:3, areaKey:'areaKeyProp',quantity:80,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 0, day:1, areaKey:'areaKeyProp', count:1,quantity:0,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 0, day:2, areaKey:'areaKeyProp', count:1,quantity:10,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 0, day:3, areaKey:'areaKeyProp', count:1,quantity:20,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 1, day:1, areaKey:'areaKeyProp', count:1,quantity:30,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 1, day:2, areaKey:'areaKeyProp', count:1,quantity:40,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 1, day:3, areaKey:'areaKeyProp', count:1,quantity:50,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 2, day:1, areaKey:'areaKeyProp', count:1,quantity:60,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 2, day:2, areaKey:'areaKeyProp', count:1,quantity:70,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 2, day:3, areaKey:'areaKeyProp', count:1,quantity:80,isWater:true },
 ];

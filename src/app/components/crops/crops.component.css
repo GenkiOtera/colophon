@@ -33,6 +33,11 @@ td.mat-column-quantity {
     max-width: 45px;
     padding-left: 20px;
 }
+td.mat-column-count {
+    min-width: 60px;
+    max-width: 60px;
+    padding-left: 20px;
+}
 td.mat-column-isWater {
     min-width: 45px;
     max-width: 45px;

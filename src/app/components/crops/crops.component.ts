@@ -23,6 +23,7 @@ export class CropsComponent {
     'calendar',
     'area',
     'quantity',
+    'count',
     'isWater',
     'menu',
   ];
@@ -66,6 +67,7 @@ export class CropsComponent {
         isWater : true,
         nameKey : '',
         quantity : 1,
+        count : 1,
         year : this.hService.year,
       }
     }else{
@@ -76,6 +78,7 @@ export class CropsComponent {
         isWater : param.isWater,
         nameKey : param.nameKey,
         quantity : param.quantity,
+        count : param.count,
         year : param.year,
       }
     }

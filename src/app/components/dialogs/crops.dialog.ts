@@ -65,6 +65,13 @@ import { HomeService } from 'src/app/services/home.service';
           </mat-select>
           <mat-error *ngIf="form.invalid">せんたくしてください</mat-error>
         </mat-form-field>
+        <mat-form-field class="count-form-field" appearance="fill" [hideRequiredMarker]="true">
+          <mat-label>かいすう</mat-label>
+          <mat-select formControlName="count">
+              <mat-option *ngFor="let num of counts" [value]="num">{{ num }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.invalid">せんたくしてください</mat-error>
+        </mat-form-field>
         <div class="isWater-container">
           <mat-label>みず</mat-label>
           <mat-slide-toggle formControlName="isWater">{{ isWaterStatus }}</mat-slide-toggle>
@@ -111,6 +118,10 @@ import { HomeService } from 'src/app/services/home.service';
     }
     .quantity-form-field{
       width: 100px;
+      margin-right: 10px;
+    }
+    .count-form-field{
+      width: 100px;
       margin-right: 30px;
     }
     mat-slide-toggle{
@@ -133,6 +144,7 @@ export class CropsDialog {
   yearLength = 99;
   dayLength = 28;
   quantityLength = 99;
+  countLength = 1;
 
   years = new Array<number>(this.yearLength);
   seasons: {[key:string]: string} = {
@@ -143,6 +155,7 @@ export class CropsDialog {
   }
   days = new Array<number>(this.dayLength);
   quantities = new Array<number>(this.quantityLength);
+  counts = new Array<number>(this.countLength);
 
   isWaterStatus:string = this.data.param.isWater ? 'ON' : 'OFF';
 
@@ -154,6 +167,7 @@ export class CropsDialog {
     day: new FormControl(this.hService.getDay(this.data.param.day), Validators.required),
     areaKey: new FormControl(this.data.param.areaKey, Validators.required),
     quantity: new FormControl(this.data.param.quantity, Validators.required),
+    count: new FormControl(this.data.param.count, Validators.required),
     isWater: new FormControl(this.data.param.isWater),
   });
 
@@ -177,6 +191,7 @@ export class CropsDialog {
       for(let i = 0; i < this.yearLength; i++){this.years[i] = i + 1;};
       for(let i = 0; i < this.dayLength; i++){this.days[i] = i + 1;};
       for(let i = 0; i < this.quantityLength; i++){this.quantities[i] = i + 1;};
+      for(let i = 0; i < this.countLength; i++){this.counts[i] = i + 1;};
 
       this.form.valueChanges.subscribe(selectedValue  => {
         this.data.param = selectedValue;
@@ -203,6 +218,7 @@ export class CropsDialog {
       day : this.hService.getRawDay(parseInt(this.data.param.season), this.data.param.day),
       areaKey : this.data.param.areaKey,
       quantity : this.data.param.quantity,
+      count : this.data.param.count,
       isWater : this.data.param.isWater,
     }
   }
