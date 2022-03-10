@@ -45,13 +45,13 @@ export class CropsComponent {
     let data:Crop = this.createSelectedItem(false, element);
     this.openDialog(false, data);
   }
-  clickDeleteButton(key:string, nameKey:string):void{
+  clickDeleteButton(element:any):void{
     const confirmDialogRef = this.dialog
     .open(ConfirmDialog, {
-      data: {name:this.eService.getName(nameKey), action:'さくじょ'},
+      data: {name:this.eService.getName(element.nameKey), action:'さくじょ'},
     })
     confirmDialogRef.afterClosed().subscribe(res => {
-      if(res) this.service.delete(key);
+      if(res) this.service.delete(element.key, element.areaKey);
     })
   }
 
