@@ -29,6 +29,17 @@ export class CropService {
   }
   update(key:string, param:any){
     this.db.list('crop').update(key, param);
+    // dayCropsの該当データも更新
+    let index = this.dayCrops[param.areaKey].findIndex(data => data.key == key);
+    this.dayCrops[param.areaKey][index] = {
+      key:key,
+      nameKey:param.nameKey,
+      count:0,
+      quantity:param.quantity,
+      dayLength:10,
+      dayStart:param.day,
+      dayLast:10,
+    }
   }
   delete(key:string, areaKey:string){
     this.db.list('crop/'+key).remove();
