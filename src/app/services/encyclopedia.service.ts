@@ -14,6 +14,8 @@ export class EncyclopediaService {
   seasonNames:{[key:string]:string} = {};
   crops: Observable<any>;
   cropNames:{[key:string]:string} = {};
+  cropCounts:{[key:string]:number} = {};
+  cropDays:{[key:string]:number} = {};
 
   constructor(private db: AngularFireDatabase) {
     this.categories = db.object('category').valueChanges();
@@ -31,6 +33,8 @@ export class EncyclopediaService {
       let keys = Object.keys(obj);
       keys.forEach(key => {
         this.cropNames[key] = obj[key]['name'];
+        this.cropCounts[key] = obj[key]['count'];
+        this.cropDays[key] = obj[key]['day'];
       })
     });
   }
@@ -52,5 +56,11 @@ export class EncyclopediaService {
   }
   getName(key:string){
     return this.cropNames[key] ? this.cropNames[key] : '-';
+  }
+  getCrop(key:string){
+    let cropRef;
+    this.crops.subscribe((crop:any) => {
+      cropRef = crop[key]
+    })
   }
 }

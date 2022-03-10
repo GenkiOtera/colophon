@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { KeyValue } from '@angular/common';
+import { MatTableDataSource } from '@angular/material/table';
 
+import { AreasService } from '../../services/areas.service';
 import { HomeService } from '../../services/home.service';
+import { Crop } from '../../models/crop.model'
 
 @Component({
   selector: 'app-home',
@@ -9,34 +13,36 @@ import { HomeService } from '../../services/home.service';
 })
 export class HomeComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'symbol1', 'symbol2'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['nameKey', 'quantity', 'year', 'day'];
+  testDisplayedColumns: string[] = ['nameKey', 'fullDay', 'quantity', 'count'];
+  testDataSource = new MatTableDataSource<Crop>(CROP_TEST_DATA);
 
-  constructor(public service:HomeService) { }
+  constructor(
+    public service:HomeService,
+    public aService:AreasService,
+  ) { }
 
   ngOnInit(): void {
+    this.testDataSource.filterPredicate = (data:Crop, filterValue:string) => {
+      return data.year == parseInt(filterValue);
+    }
+    this.testDataSource.filter = '1';
   }
-
+  // Compare Function's
+  originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>):number => 0;
+  valueAscOrder = (a: KeyValue<string,any>, b: KeyValue<string,any>): number => {
+    return a.value['name'].localeCompare(b.value['name']);
+  };
 }
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  symbol1: string;
-  symbol2: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', symbol1: 'H', symbol2: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', symbol1: 'H', symbol2: 'H'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', symbol1: 'H', symbol2: 'H'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be', symbol1: 'H', symbol2: 'H'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B', symbol1: 'H', symbol2: 'H'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C', symbol1: 'H', symbol2: 'H'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N', symbol1: 'H', symbol2: 'H'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O', symbol1: 'H', symbol2: 'H'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F', symbol1: 'H', symbol2: 'H'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne', symbol1: 'H', symbol2: 'H'},
+const CROP_TEST_DATA: Crop[] = [
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 0, day:1, areaKey:'areaKeyProp',quantity:0,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 0, day:2, areaKey:'areaKeyProp',quantity:10,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 0, day:3, areaKey:'areaKeyProp',quantity:20,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 1, day:1, areaKey:'areaKeyProp',quantity:30,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 1, day:2, areaKey:'areaKeyProp',quantity:40,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 1, day:3, areaKey:'areaKeyProp',quantity:50,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 2, day:1, areaKey:'areaKeyProp',quantity:60,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 2, day:2, areaKey:'areaKeyProp',quantity:70,isWater:true },
+  {key: 'keyProp', nameKey: 'nameKeyProp', year: 2, day:3, areaKey:'areaKeyProp',quantity:80,isWater:true },
 ];

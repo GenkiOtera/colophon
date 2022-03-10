@@ -17,7 +17,10 @@ export class CropService {
   // areaKey1つに対してDayCropの配列を紐づけ
   dayCrops: {[key:string]:DayCrop[]} = {};
 
-  constructor(private db:AngularFireDatabase, public eService:EncyclopediaService) {
+  constructor(
+    private db:AngularFireDatabase,
+    public eService:EncyclopediaService,
+  ) {
     db.object('crop').snapshotChanges().subscribe((val:any) => {
       this.createTableData(val);
       setTimeout(()=>{ this.table?.renderRows(); },10)
@@ -33,7 +36,7 @@ export class CropService {
     let index = this.dayCrops[param.areaKey].findIndex(data => data.key == key);
     this.dayCrops[param.areaKey][index] = {
       key:key,
-      nameKey:param.nameKey,
+      name:this.eService.cropNames[param.nameKey],
       count:0,
       quantity:param.quantity,
       dayLength:10,
@@ -68,14 +71,19 @@ export class CropService {
       }
       crops.push(crop);
       // ホーム画面用データ
+      let nameKey = obj[key]['nameKey'];
+      let count = this.eService.cropCounts[nameKey]; //後ほど実装
+      let dayLength = this.eService.cropDays[nameKey]; //ずかんの日にちプロパティ
+      let dayStart = (obj[key]['year'] * 28 * 4) + obj[key]['day']; //（年×２８×４）＋obj[key]['day']をセット;
+      let dayLast = dayStart + (dayLength * count); //さくもつが消滅する日付をセット（任意の季節の最終日）
       let dayCrop:DayCrop = {
-        key:key,
-        nameKey:obj[key]['nameKey'],
-        count:0, //後ほど実装
-        quantity:obj[key]['quantity'],
-        dayLength:10, //ずかんの日にちプロパティ
-        dayStart:obj[key]['day'], //（年×２８×４）＋obj[key]['day']をセット
-        dayLast:10, //さくもつが消滅する日付をセット（任意の季節の最終日）
+        key      : key,
+        name     : this.eService.cropNames[nameKey],
+        count    : count,
+        quantity : obj[key]['quantity'],
+        dayLength: dayLength,
+        dayStart : dayStart,
+        dayLast  : dayLast,
       }
       if(!this.dayCrops[obj[key]['areaKey']]){
         this.dayCrops[obj[key]['areaKey']] = [];
@@ -89,5 +97,18 @@ export class CropService {
     this.crops.data = crops;
     console.log('created dayCrop data');
     console.log(this.dayCrops);
+  }
+
+  private createDayCrop(key:string,obj:any):DayCrop{
+    let data:DayCrop = {
+      key:key,
+      name:obj[key]['nameKey'],
+      count:0, //後ほど実装
+      quantity:obj[key]['quantity'],
+      dayLength:10, //ずかんの日にちプロパティ
+      dayStart:obj[key]['day'], //（年×２８×４）＋obj[key]['day']をセット
+      dayLast:10, //さくもつが消滅する日付をセット（任意の季節の最終日）
+    }
+    return data;
   }
 }

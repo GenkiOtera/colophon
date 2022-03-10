@@ -1,6 +1,6 @@
 export interface DayCrop {
     key:string;
-    nameKey:string;
+    name:string;
     count:number;
     quantity:number;
     dayLength:number;
