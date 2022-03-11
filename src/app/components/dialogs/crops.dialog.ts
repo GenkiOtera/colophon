@@ -185,7 +185,7 @@ export class CropsDialog {
     }else{
       this.title = "へんしゅう";
       this.submitTitle = "こうしん";
-      this.countLength = ++this.eService.cropCounts[this.data.param.nameKey];
+      this.countLength = this.eService.cropCounts[this.data.param.nameKey] +1;
       for(let i = 0; i < this.countLength; i++){this.counts[i] = i;};
     }
     // 選択肢となる数値をセット
