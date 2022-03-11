@@ -13,9 +13,11 @@ export class CropService {
 
   @ViewChild(MatTable)
   table?:MatTable<Crop>;
-  crops = new MatTableDataSource<Crop>();
+  crops: {[key:string]:any} = {};
+  cropsForTable = new MatTableDataSource<Crop>();
   dayCrops: {[key:string]:DayCrop[]} = {}; // areaKey1つに対してDayCropの配列を紐づけ
   dayCropsForTable: {[key:string]:MatTableDataSource<DayCrop>} = {};
+  dayCropsStatus: {[key:string]:number} = {};
 
   constructor(
     private db:AngularFireDatabase,
@@ -53,7 +55,7 @@ export class CropService {
   private createTableData(data:any):void{
     let obj = data.payload.val();
     if(!obj){
-      this.crops.data = [];
+      this.cropsForTable.data = [];
       return;
     } 
     let keys = Object.keys(obj);
@@ -89,9 +91,10 @@ export class CropService {
         let existFlag = this.dayCrops[obj[key]['areaKey']].find(data => data.key == dayCrop.key);
         if(!existFlag) this.dayCrops[obj[key]['areaKey']].push(dayCrop);
       };
+      // this.dayCropsStatus[key] = this.hService.getStatus(dayCrop);
     });
     this.updateTableData();
-    this.crops.data = crops;
+    this.cropsForTable.data = crops;
   }
   
   private updateTableData(){

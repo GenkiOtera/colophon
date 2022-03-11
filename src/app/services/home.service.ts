@@ -137,7 +137,6 @@ export class HomeService {
   }
   public getStatus(dayCrop:DayCrop):number{
     let result:number;
-
     if(dayCrop.count <= 0){
       result = -1;
     }else if(dayCrop.dayStart > this.fullDay){
@@ -146,7 +145,6 @@ export class HomeService {
       let dif = (dayCrop.dayStart + dayCrop.dayLength) - this.fullDay;
       result = dif <= 0 ? 0 : dif;
     }
-
     return result;
   }
   private update(year:number, day:number){
