@@ -1,5 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { KeyValue } from '@angular/common';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -186,8 +185,8 @@ export class CropsDialog {
     }else{
       this.title = "へんしゅう";
       this.submitTitle = "こうしん";
-      this.countLength = this.eService.cropCounts[this.data.param.nameKey];
-      for(let i = 0; i < this.countLength; i++){this.counts[i] = i + 1;};
+      this.countLength = ++this.eService.cropCounts[this.data.param.nameKey];
+      for(let i = 0; i < this.countLength; i++){this.counts[i] = i;};
     }
     // 選択肢となる数値をセット
     for(let i = 0; i < this.yearLength; i++){this.years[i] = i + 1;};
@@ -201,8 +200,8 @@ export class CropsDialog {
   };
     
   onSelectName(){
-    this.countLength = this.eService.cropCounts[this.data.param.nameKey];
-    for(let i = 0; i < this.countLength; i++){this.counts[i] = i + 1;};
+    this.countLength = ++this.eService.cropCounts[this.data.param.nameKey];
+    for(let i = 0; i < this.countLength; i++){this.counts[i] = i;};
     this.data.param.count = this.countLength;
     this.form.patchValue({'count':this.countLength});
   }
