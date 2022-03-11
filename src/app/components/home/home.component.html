@@ -31,6 +31,8 @@
           <mat-panel-title>
             <mat-icon>place</mat-icon>
             {{ area.value['name'] }}
+            <span class="spacer"></span>
+            [ {{ getCropLength(area.key)}} ]
           </mat-panel-title>
         </mat-expansion-panel-header>
 

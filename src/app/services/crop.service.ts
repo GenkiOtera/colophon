@@ -22,7 +22,7 @@ export class CropService {
   ) {
     db.object('crop').snapshotChanges().subscribe((val:any) => {
       this.createTableData(val);
-      setTimeout(()=>{ this.table?.renderRows(); },10)
+      setTimeout(()=>{ this.table?.renderRows(); },10);
     });
   }
 

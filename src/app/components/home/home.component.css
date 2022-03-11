@@ -26,11 +26,8 @@ legend{
 label{
     white-space: nowrap;
 }
-.box{
-    user-select: none;
-    font-size: min(10vw, 14px);
-    max-width: min(30vw, 70px);
-    margin: 2px;
+.spacer {
+    flex: 1 1 auto;
 }
 .container {
     flex: 1;

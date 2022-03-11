@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { AreasService } from '../../services/areas.service';
 import { HomeService } from '../../services/home.service';
+import { AreasService } from '../../services/areas.service';
+import { CropService } from '../../services/crop.service';
 import { Crop } from '../../models/crop.model'
 
 @Component({
@@ -20,13 +21,24 @@ export class HomeComponent implements OnInit {
   constructor(
     public service:HomeService,
     public aService:AreasService,
+    public cService:CropService,
   ) { }
-
+  
   ngOnInit(): void {
     this.testDataSource.filterPredicate = (data:Crop, filterValue:string) => {
       return data.year == parseInt(filterValue);
     }
     this.testDataSource.filter = '1';
+  }
+
+  getCropLength(areaKey:string):number{
+    let result:number;
+    if(this.cService.dayCrops[areaKey] == undefined){
+      result = 0;
+    }else{
+      result = this.cService.dayCrops[areaKey].length;
+    }
+    return result;
   }
   // Compare Function's
   originalOrder = (a: KeyValue<any,any>, b: KeyValue<any,any>):number => 0;
