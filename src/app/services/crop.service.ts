@@ -15,6 +15,7 @@ export class CropService {
   table?:MatTable<Crop>;
   crops = new MatTableDataSource<Crop>();
   dayCrops: {[key:string]:DayCrop[]} = {}; // areaKey1つに対してDayCropの配列を紐づけ
+  dayCropsForTable: {[key:string]:MatTableDataSource<DayCrop>} = {};
 
   constructor(
     private db:AngularFireDatabase,
@@ -41,6 +42,7 @@ export class CropService {
       dayLength:this.eService.cropDays[param.nameKey],
       dayStart:param.day,
     };
+    this.updateTableData();
   }
   delete(key:string, areaKey:string){
     this.db.list('crop/'+key).remove();
@@ -88,6 +90,13 @@ export class CropService {
         if(!existFlag) this.dayCrops[obj[key]['areaKey']].push(dayCrop);
       };
     });
+    this.updateTableData();
     this.crops.data = crops;
+  }
+  
+  private updateTableData(){
+    Object.keys(this.dayCrops).forEach(key => {
+      this.dayCropsForTable[key] = new MatTableDataSource<DayCrop>(this.dayCrops[key]);
+    });
   }
 }

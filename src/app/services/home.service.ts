@@ -135,11 +135,6 @@ export class HomeService {
     day = day == 0 ? maxDay : day;
     return day;
   }
-
-  public getTableData(areaKey:string):MatTableDataSource<DayCrop>{
-    let tableData = new MatTableDataSource<DayCrop>(this.cService.dayCrops[areaKey]);
-    return tableData;
-  }
   public getStatus(dayCrop:DayCrop):number{
     let result:number;
 
