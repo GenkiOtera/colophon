@@ -37,11 +37,10 @@ export class CropService {
     this.dayCrops[param.areaKey][index] = {
       key:key,
       name:this.eService.cropNames[param.nameKey],
-      count:0,
+      count:param.count,
       quantity:param.quantity,
-      dayLength:10,
+      dayLength:this.eService.cropDays[param.nameKey],
       dayStart:param.day,
-      dayLast:10,
     }
   }
   delete(key:string, areaKey:string){
@@ -73,18 +72,13 @@ export class CropService {
       crops.push(crop);
       // ホーム画面用データ
       let nameKey = obj[key]['nameKey'];
-      let count = this.eService.cropCounts[nameKey]; //後ほど実装
-      let dayLength = this.eService.cropDays[nameKey]; //ずかんの日にちプロパティ
-      let dayStart = (obj[key]['year'] * 28 * 4) + obj[key]['day']; //（年×２８×４）＋obj[key]['day']をセット;
-      let dayLast = dayStart + (dayLength * count); //さくもつが消滅する日付をセット（任意の季節の最終日）
       let dayCrop:DayCrop = {
         key      : key,
         name     : this.eService.cropNames[nameKey],
-        count    : count,
+        count    : obj[key]['count'],
         quantity : obj[key]['quantity'],
-        dayLength: dayLength,
-        dayStart : dayStart,
-        dayLast  : dayLast,
+        dayLength: this.eService.cropDays[nameKey], //ずかんの日にちプロパティ,
+        dayStart : (obj[key]['year'] * 28 * 4) + obj[key]['day'], //（年×２８×４）＋obj[key]['day']をセット;
       }
       if(!this.dayCrops[obj[key]['areaKey']]){
         this.dayCrops[obj[key]['areaKey']] = [];
@@ -106,7 +100,6 @@ export class CropService {
       quantity:obj[key]['quantity'],
       dayLength:10, //ずかんの日にちプロパティ
       dayStart:obj[key]['day'], //（年×２８×４）＋obj[key]['day']をセット
-      dayLast:10, //さくもつが消滅する日付をセット（任意の季節の最終日）
     }
     return data;
   }

@@ -5,5 +5,4 @@ export interface DayCrop {
     quantity:number;
     dayLength:number;
     dayStart:number;
-    dayLast:number;
 }

@@ -138,14 +138,12 @@ export class HomeService {
   public getStatus(dayCrop:DayCrop):number{
     let result:number;
 
-    // if(dayCrop.count <= 0){
-    // テスト用条件式
-    if(dayCrop.quantity == 10){
+    if(dayCrop.count <= 0){
       result = -1;
     }else if(dayCrop.dayStart > this.fullDay){
       result = -2;
     }else{
-      let dif = dayCrop.dayLast - this.fullDay;
+      let dif = (dayCrop.dayStart + dayCrop.dayLength) - this.fullDay;
       result = dif <= 0 ? 0 : dif;
     }
 
