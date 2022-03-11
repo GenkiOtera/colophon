@@ -16,7 +16,7 @@ import { HomeService } from 'src/app/services/home.service';
     <form [formGroup]="form">
       <mat-form-field class="keys-form-field" appearance="fill" [hideRequiredMarker]="true">
         <mat-label>なまえ</mat-label>
-        <mat-select formControlName="nameKey">
+        <mat-select formControlName="nameKey" (selectionChange)="onSelectName()">
             <mat-option *ngFor="let cropName of eService.cropNames | keyvalue" [value]="cropName.key">
                 {{ cropName.value }}
             </mat-option>
@@ -144,7 +144,7 @@ export class CropsDialog {
   yearLength = 99;
   dayLength = 28;
   quantityLength = 99;
-  countLength = 1;
+  countLength = 0;
 
   years = new Array<number>(this.yearLength);
   seasons: {[key:string]: string} = {
@@ -172,32 +172,40 @@ export class CropsDialog {
   });
 
   constructor(
-      public dialogRef: MatDialogRef<CropsDialog>,
-      @Inject(MAT_DIALOG_DATA)
-      public data:any,
-      public service: CropService,
-      public aService: AreasService,
-      public eService: EncyclopediaService,
-      public hService: HomeService,
-    ) {
-      if(data.isNew){
-        this.title = "ついか"
-        this.submitTitle = "ついか"
-      }else{
-        this.title = "へんしゅう"
-        this.submitTitle = "こうしん"
-      }
-      // 選択肢となる数値をセット
-      for(let i = 0; i < this.yearLength; i++){this.years[i] = i + 1;};
-      for(let i = 0; i < this.dayLength; i++){this.days[i] = i + 1;};
-      for(let i = 0; i < this.quantityLength; i++){this.quantities[i] = i + 1;};
+    public dialogRef: MatDialogRef<CropsDialog>,
+    @Inject(MAT_DIALOG_DATA)
+    public data:any,
+    public service: CropService,
+    public aService: AreasService,
+    public eService: EncyclopediaService,
+    public hService: HomeService,
+  ) {
+    if(data.isNew){
+      this.title = "ついか";
+      this.submitTitle = "ついか";
+    }else{
+      this.title = "へんしゅう";
+      this.submitTitle = "こうしん";
+      this.countLength = this.data.param.count;
       for(let i = 0; i < this.countLength; i++){this.counts[i] = i + 1;};
-
-      this.form.valueChanges.subscribe(selectedValue  => {
-        this.data.param = selectedValue;
-        this.isWaterStatus = this.data.param.isWater ? 'ON' : 'OFF';
-      })
+    }
+    // 選択肢となる数値をセット
+    for(let i = 0; i < this.yearLength; i++){this.years[i] = i + 1;};
+    for(let i = 0; i < this.dayLength; i++){this.days[i] = i + 1;};
+    for(let i = 0; i < this.quantityLength; i++){this.quantities[i] = i + 1;};
+    
+    this.form.valueChanges.subscribe(selectedValue  => {
+      this.data.param = selectedValue;
+      this.isWaterStatus = this.data.param.isWater ? 'ON' : 'OFF';
+    })
   };
+    
+  onSelectName(){
+    this.countLength = this.eService.cropCounts[this.data.param.nameKey];
+    for(let i = 0; i < this.countLength; i++){this.counts[i] = i + 1;};
+    this.data.param.count = this.countLength;
+    this.form.patchValue({'count':this.countLength});
+  }
 
   saveData(){
     if(this.data.isNew){
