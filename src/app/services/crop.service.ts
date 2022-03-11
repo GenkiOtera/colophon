@@ -35,7 +35,7 @@ export class CropService {
     let index = this.dayCrops[param.areaKey].findIndex(data => data.key == key);
     this.dayCrops[param.areaKey][index] = {
       key:key,
-      name:this.eService.cropNames[param.nameKey],
+      nameKey:param.nameKey,
       count:param.count,
       quantity:param.quantity,
       dayLength:this.eService.cropDays[param.nameKey],
@@ -73,7 +73,7 @@ export class CropService {
       let nameKey = obj[key]['nameKey'];
       let dayCrop:DayCrop = {
         key      : key,
-        name     : this.eService.cropNames[nameKey],
+        nameKey  : nameKey,
         count    : obj[key]['count'],
         quantity : obj[key]['quantity'],
         dayLength: this.eService.cropDays[nameKey], //ずかんの日にちプロパティ,

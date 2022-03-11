@@ -39,7 +39,7 @@
         <table mat-table [dataSource]="service.getTableData(area.key)">
           <ng-container matColumnDef="nameKey">
             <th mat-header-cell *matHeaderCellDef>なまえ</th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <td mat-cell *matCellDef="let element"> {{service.eService.cropNames[element.nameKey]}} </td>
           </ng-container>
           <ng-container matColumnDef="fullDay">
             <th mat-header-cell *matHeaderCellDef>じょうたい</th>

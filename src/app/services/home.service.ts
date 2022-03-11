@@ -83,17 +83,22 @@ export class HomeService {
   public onHarvest(element:any){
     const confirmDialogRef = this.dialog
     .open(ConfirmDialog, {
-      data: {name:element.name, action:'しゅうかく'},
+      data: {name:this.eService.cropNames[element.nameKey], action:'しゅうかく'},
     });
     confirmDialogRef.afterClosed().subscribe(res => {
-      // if(res) this.service.delete(element.key, element.areaKey);
+      if(!res) return;
+      let param = {
+        count:element.count - 1,
+        day:this.rawDay,
+      }
+      this.db.list('crop').update(element.key, param);
     });
   }
 
   public deleteCrop(element:any){
     const confirmDialogRef = this.dialog
     .open(ConfirmDialog, {
-      data: {name:element.name, action:'さくじょ'},
+      data: {name:this.eService.cropNames[element.nameKey], action:'さくじょ'},
     });
     confirmDialogRef.afterClosed().subscribe(res => {
       // if(res) this.cService.delete(element.key, element.areaKey);
