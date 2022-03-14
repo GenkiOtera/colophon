@@ -30,6 +30,12 @@ export class EncyclopediaService {
     this.crops = cropRef.valueChanges();
     cropRef.snapshotChanges().subscribe((crops:any) => {
       let obj = crops.payload.val();
+      if(!obj){
+        this.cropNames = {};
+        this.cropCounts = {};
+        this.cropDays = {};
+        return;
+      }
       let keys = Object.keys(obj);
       keys.forEach(key => {
         this.cropNames[key] = obj[key]['name'];
