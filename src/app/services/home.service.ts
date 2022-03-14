@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 import { ConfirmDialog } from '../components/dialogs/confirm.dialog';
 import { DayCrop } from '../models/day-crop.model';
@@ -21,6 +22,7 @@ export class HomeService {
   season:string = '';
   day:number = 0;
   fullDay:number = 0;
+  observableNow:Observable<any>;
 
   constructor(
     private db:AngularFireDatabase,
@@ -28,18 +30,17 @@ export class HomeService {
     public cService:CropService,
     public eService:EncyclopediaService,
   ) {
+    this.observableNow = this.db.object('now').valueChanges();
     // 年の値をセット
     let yearRef:AngularFireObject<number> = db.object('now/year');
-    yearRef.snapshotChanges().subscribe(res => {
-      let year = res.payload.val() ? res.payload.val() : 0;
-      this.year = year ? year : 0;
+    db.object('now/year').valueChanges().subscribe((res:any) => {
+      this.year = res ? res : 0;
       this.fullDay = this.calcDay(this.year, this.rawDay);
     })
     // 季節と日付の値をセット
     let dayRef:AngularFireObject<number> = db.object('now/day');
-    dayRef.snapshotChanges().subscribe(res => {
-      let rawDay = res.payload.val();
-      this.rawDay = rawDay ? rawDay : 0;
+    db.object('now/day').valueChanges().subscribe((res:any) => {
+      this.rawDay = res ? res : 0;
       this.season = this.getSeason(this.rawDay);
       this.day = this.getDay(this.rawDay);
       this.fullDay = this.calcDay(this.year, this.rawDay);
@@ -152,7 +153,7 @@ export class HomeService {
   private update(year:number, day:number){
     this.db.object('now').update({year:year,day:day});
   }
-  private calcDay(year:number, rawDay:number):number{
+  public calcDay(year:number, rawDay:number):number{
     return (year * maxSeason * maxDay) + rawDay;
   }
 }

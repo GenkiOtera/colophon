@@ -22,7 +22,15 @@ export class HomeComponent implements OnInit {
     public service:HomeService,
     public aService:AreasService,
     public cService:CropService,
-  ) { }
+  ) {
+    this.service.observableNow.subscribe((res:any) => {
+      this.service.year = res['year'] ? res['year'] : 0;
+      this.service.rawDay = res['day'] ? res['day'] : 0;
+      this.service.season = this.service.getSeason(this.service.rawDay);
+      this.service.day = this.service.getDay(this.service.rawDay);
+      this.service.fullDay = this.service.calcDay(this.service.year, this.service.rawDay);
+    })
+  }
   
   ngOnInit(): void {
     this.testDataSource.filterPredicate = (data:Crop, filterValue:string) => {
