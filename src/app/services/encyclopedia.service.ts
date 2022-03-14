@@ -20,7 +20,7 @@ export class EncyclopediaService {
   constructor(private db: AngularFireDatabase) {
     this.categories = db.object('category').valueChanges();
 
-    let seasonRef:AngularFireObject<any> = db.object('きせつ');
+    let seasonRef:AngularFireObject<any> = db.object('season');
     this.seasons = seasonRef.valueChanges();
     seasonRef.snapshotChanges().subscribe((season:any) => {
       this.seasonNames = season.payload.val();
