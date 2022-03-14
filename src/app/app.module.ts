@@ -29,6 +29,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
 import { REGION } from '@angular/fire/compat/functions';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
@@ -69,6 +70,7 @@ import { EncyclopediaDialog } from './components/dialogs/encyclopedia.dialog';
     // firebase
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireAuthGuardModule,
     AngularFireDatabaseModule,
 
     // Material

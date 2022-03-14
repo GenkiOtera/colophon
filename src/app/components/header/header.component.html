@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" [hidden]="isAuth">
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <!-- Sidenav button -->
@@ -10,8 +10,8 @@
         <!-- Spacer -->
         <span class="spacer"></span>
         <!-- Button(right side) -->
-        <button mat-icon-button type="button">
-        <!-- <button mat-icon-button type="button" (click)="authService.signOut()"> -->
+        <!-- <button mat-icon-button type="button"> -->
+        <button mat-icon-button type="button" (click)="authService.signOut()">
           <mat-icon>logout</mat-icon>
         </button>
       </mat-toolbar-row>
