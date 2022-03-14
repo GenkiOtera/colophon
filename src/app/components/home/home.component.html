@@ -45,7 +45,7 @@
             <th mat-header-cell *matHeaderCellDef>じょうたい</th>
             <td mat-cell *matCellDef="let element" [ngSwitch]="service.getStatus(element)">
               <button mat-icon-button type="button" *ngSwitchCase="0" (click)="service.onHarvest(area.key, element)"><mat-icon>agriculture</mat-icon></button>
-              <button mat-icon-button type="button" *ngSwitchCase="-1" (click)="service.deleteCrop(element)"><mat-icon *ngSwitchCase="-1">close</mat-icon></button>
+              <button mat-icon-button type="button" *ngSwitchCase="-1" (click)="service.deleteCrop(area.key, element)"><mat-icon *ngSwitchCase="-1">close</mat-icon></button>
               <div *ngSwitchCase="-2">あと - にち</div>
               <div *ngSwitchDefault>あと {{ service.getStatus(element) }} にち</div>
             </td>

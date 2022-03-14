@@ -97,13 +97,13 @@ export class HomeService {
     });
   }
 
-  public deleteCrop(element:any){
+  public deleteCrop(areaKey:string, element:any){
     const confirmDialogRef = this.dialog
     .open(ConfirmDialog, {
       data: {name:this.eService.cropNames[element.nameKey], action:'さくじょ'},
     });
     confirmDialogRef.afterClosed().subscribe(res => {
-      // if(res) this.cService.delete(element.key, element.areaKey);
+      if(res) this.cService.delete(element.key, areaKey);
     });
   }
 
@@ -146,11 +146,7 @@ export class HomeService {
     }else{
       let dif = (dayCrop.dayStart + dayCrop.dayLength) - this.fullDay;
       result = dif <= 0 ? 0 : dif;
-      console.log('fullDay');
-      console.log(this.fullDay);
     }
-    console.log(dayCrop);
-    console.log(result);
     return result;
   }
   private update(year:number, day:number){
