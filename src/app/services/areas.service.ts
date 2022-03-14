@@ -16,6 +16,10 @@ export class AreasService {
     areaRef.snapshotChanges().subscribe(
       (area:any) => {
         let obj = area.payload.val();
+        if(!obj){
+          this.areaNames = {};
+          return;
+        }
         let keys = Object.keys(obj);
         keys.forEach(key => {
           this.areaNames[key] = obj[key]['name'];
