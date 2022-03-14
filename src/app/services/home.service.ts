@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
 
 import { ConfirmDialog } from '../components/dialogs/confirm.dialog';
 import { DayCrop } from '../models/day-crop.model';
@@ -80,18 +79,21 @@ export class HomeService {
     }
   }
 
-  public onHarvest(element:any){
+  public onHarvest(areaKey:string, element:any){
     const confirmDialogRef = this.dialog
     .open(ConfirmDialog, {
       data: {name:this.eService.cropNames[element.nameKey], action:'しゅうかく'},
     });
     confirmDialogRef.afterClosed().subscribe(res => {
-      if(!res) return;
-      let param = {
-        count:element.count - 1,
-        day:this.rawDay,
-      }
-      this.db.list('crop').update(element.key, param);
+      if(res){
+        let param = {
+          key: element.key,
+          areaKey: areaKey,
+          count:element.count - 1,
+          rawDay:this.rawDay,
+        }
+        this.cService.onHarvest(param);
+      } 
     });
   }
 
@@ -144,7 +146,11 @@ export class HomeService {
     }else{
       let dif = (dayCrop.dayStart + dayCrop.dayLength) - this.fullDay;
       result = dif <= 0 ? 0 : dif;
+      console.log('fullDay');
+      console.log(this.fullDay);
     }
+    console.log(dayCrop);
+    console.log(result);
     return result;
   }
   private update(year:number, day:number){

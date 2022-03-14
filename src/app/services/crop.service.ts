@@ -1,6 +1,7 @@
 import { Injectable, ViewChild } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
 
 import { Crop } from '../models/crop.model'
 import { DayCrop } from '../models/day-crop.model'
@@ -13,16 +14,16 @@ export class CropService {
 
   @ViewChild(MatTable)
   table?:MatTable<Crop>;
-  crops: {[key:string]:any} = {};
+  crops: Observable<any>;
   cropsForTable = new MatTableDataSource<Crop>();
   dayCrops: {[key:string]:DayCrop[]} = {}; // areaKey1つに対してDayCropの配列を紐づけ
   dayCropsForTable: {[key:string]:MatTableDataSource<DayCrop>} = {};
-  dayCropsStatus: {[key:string]:number} = {};
 
   constructor(
     private db:AngularFireDatabase,
     public eService:EncyclopediaService,
   ) {
+    this.crops = db.object('crop').valueChanges();
     db.object('crop').snapshotChanges().subscribe((val:any) => {
       this.createTableData(val);
       setTimeout(()=>{ this.table?.renderRows(); },10);
@@ -42,7 +43,7 @@ export class CropService {
       count:param.count,
       quantity:param.quantity,
       dayLength:this.eService.cropDays[param.nameKey],
-      dayStart:param.day,
+      dayStart:(param.year * 28 * 4) + param.day,
     };
     this.updateTableData();
   }
@@ -50,6 +51,16 @@ export class CropService {
     this.db.list('crop/'+key).remove();
     // dayCropsから該当データを削除
     this.dayCrops[areaKey] = this.dayCrops[areaKey].filter(data => data.key !== key);
+  }
+  
+  public onHarvest(param:any){
+    this.db.list('crop').update(param.key, param);
+    // dayCropsの該当データも更新
+    let index = this.dayCrops[param.areaKey].findIndex(data => data.key == param.key);
+    this.dayCrops[param.areaKey][index].key = param.key;
+    this.dayCrops[param.areaKey][index].count = param.count;
+    this.dayCrops[param.areaKey][index].dayStart = param.rawDay;
+    this.updateTableData();
   }
 
   private createTableData(data:any):void{
